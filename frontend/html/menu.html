@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Agua</title>
+  <link rel="stylesheet" href="../css/menu.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <img src="../../logos/logo.jpeg" class="logo">
+  </header>
+
+  <main class="container">
+
+    <div class="card" onclick="ir('contrato')">
+    
+      <i class="fas fa-file-contract"></i>
+      <p>Contrato</p>
+    </div>
+
+    <div class="card" onclick="ir('contribuyentes')">
+      <i class="fas fa-users"></i> 
+      <p>Contribuyentes</p>
+    </div>
+
+    <div class="card" onclick="ir('pagos')">
+      <i class="fa-solid fa-coins"></i>
+      <p>Pagos</p>
+    </div>
+
+    <div class="card" onclick="ir('reportes')">
+      <i class="fas fa-chart-bar"></i>
+      <p>Reportes</p>
+    </div>
+
+    <div class="card" onclick="ir('configuracion')">
+      <i class="fas fa-cog"></i>
+      <p>Configuración</p>
+    </div>
+
+  </main>
+
+  <button class="salir" onclick="salir()">Salir</button>
+
+  <script src="../js/menu.js"></script>
+  
+</body>
+
+<!-- Modal de Salida -->
+<div id="modalSalir" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-icon">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+    <h3>¿Cerrar sesión?</h3>
+    <p>Estás a punto de salir del sistema de agua.</p>
+    <div class="modal-buttons">
+      <button onclick="cerrarModal()" class="btn-cancelar">Cancelar</button>
+      <button onclick="confirmarSalida()" class="btn-confirmar">Salir</button>
+    </div>
+  </div>
+</div>
+</html>

@@ -1,0 +1,194 @@
+  
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
+    }
+
+  
+    .header {
+      background-color: #8B0000;
+      color: white;
+      padding: 15px;
+    }
+
+    .header h2 {
+      margin: 0;
+    }
+
+    .acciones {
+      margin-top: 10px;
+    }
+
+    .btn {
+      background-color: #a52a2a;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin-right: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #7a1f1f;
+    }
+
+    
+    .form-container {
+      padding: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+
+    
+    .full {
+      grid-column: span 4;
+    }
+
+   
+    .opciones {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      align-items: center;
+    }
+
+    .grupo-opcion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .switch button {
+      background-color: #b8860b;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 2px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .switch button:hover {
+      background-color: #8b6508;
+    }
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+/* El fondo oscuro transparente */
+.modal-overlay {
+  display: none; /* Se activa con JS */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* Desenfoque moderno */
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* La cajita ventana */
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  animation: modalEntrada 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Aparecer*/
+@keyframes modalEntrada {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Diseño del icono */
+.circle-icon {
+  width: 70px;
+  height: 70px;
+  background: #fceaea;
+  color: #8B0000;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+}
+
+/* Caja del mensaje */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  background: #eee;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  background: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar:hover { background: #a00000; }
+

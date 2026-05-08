@@ -1,0 +1,75 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+/* HEADER */
+.header {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+}
+
+/* BARRA */
+.barra {
+  background: #8b0000;
+  padding: 10px 20px;
+}
+
+.btn {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #a30000;
+}
+
+/* SELECT */
+.usuario-select {
+  padding: 20px;
+}
+
+.usuario-select select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* TABLA */
+.tabla-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background: #e0e0e0;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}

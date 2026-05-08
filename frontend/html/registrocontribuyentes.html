@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar contribuyente</title>
+  <link rel="stylesheet" href="../css/registrocontribuyentes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <h2>Registrar nuevo contribuyente</h2>
+
+    <div class="acciones">
+     <button class="btn" id="menu"><i class="fa-solid fa-house"></i> Menu</button>
+     <button class="btn" id="cancelar"><i class="fas fa-times"></i> Cancelar</button>
+     <button class="btn" id="guardar"><i class="fas fa-save"></i> Guardar</button>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="formulario">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Código</label>
+          <input type="text" id="codigo">
+        </div>
+
+        <div class="form-group">
+          <label>Apellido paterno</label>
+          <input type="text" id="apellidoP">
+        </div>
+
+        <div class="form-group">
+          <label>Apellido materno</label>
+          <input type="text" id="apellidoM">
+        </div>
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="nombre">
+        </div>
+
+        <div class="form-group">
+          <label>Estado</label>
+          <select id="estado">
+  <option value="">Selecciona</option>
+  <option value="Tlaxcala">Tlaxcala</option>
+</select>
+        </div>
+
+        <div class="form-group">
+          <label>Municipio</label>
+          <select id="municipio">
+  <option value="">Selecciona</option>
+  <option value="Tetla de la Solidaridad">Tetla de la Solidaridad</option>
+  <option value="Apizaco">Apizaco</option>
+  <option value="Yauhquemehcan">Yauhquemehcan</option>
+  <option value="Tlaxcala">Tlaxcala</option>
+  <option value="Xaloztoc">Xaloztoc</option>
+</select>
+        </div>
+
+        <div class="form-group">
+          <label>Localidad</label>
+          <input type="text" id="localidad">
+        </div>
+
+        <div class="form-group">
+          <label>Colonia</label>
+          <select id="colonia">
+  <option value="">Selecciona </option>
+  <option value="San Bartolomé Matlalohcan">San Bartolomé Matlalohcan</option>
+  <option value="San Isidro Piedras Negras">San Isidro Piedras Negras</option>
+  <option value="San Francisco Atexcatzinco">San Francisco Atexcatzinco</option>
+  <option value="Santa Fe La Troje">Santa Fe La Troje</option>
+  <option value="Capulac">Capulac</option>
+</select>
+        </div>
+
+        <div class="form-group">
+          <label>Calle</label>
+          <input type="text" id="calle">
+        </div>
+
+        <div class="form-group">
+          <label>Número exterior</label>
+          <input type="text" id="numExt">
+        </div>
+
+        <div class="form-group">
+          <label>Número interior</label>
+          <input type="text" id="numInt">
+        </div>
+
+        <div class="form-group">
+          <label>Código postal</label>
+          <input type="text" id="cp" pattern="[0-9]{5}" title="El código postal debe ser de 5 dígitos">
+        </div>
+
+        <div class="form-group">
+          <label>Razón social</label>
+          <input type="text" id="razon">
+        </div>
+
+        <div class="form-group">
+          <label>RFC</label>
+          <input type="text" id="rfc" 
+       pattern="^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$" 
+       title="Ingrese un RFC válido (Persona Física o Moral)"
+       oninput="this.value = this.value.toUpperCase()">
+        </div>
+
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" id="correo" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        </div>
+
+        <div class="form-group">
+          <label>Número de teléfono</label>
+          <input type="text" id="telefono">
+        </div>
+
+        <div class="form-group full">
+          <label>Régimen fiscal</label>
+          <input type="text" id="regimen">
+        </div>
+
+      </div>
+
+      <!-- OPCIONES -->
+      <div class="opciones">
+
+        <div class="grupo-opcion">
+          <span>Es propietario</span>
+          <div class="switch">
+<button type="button" id="propSi">Si</button>
+<button type="button" id="propNo">No</button>
+          </div>
+        </div>
+
+        <div class="grupo-opcion">
+          <span>Se asignará contrato</span>
+          <div class="switch">
+<button type="button" id="contSi">Si</button>
+<button type="button" id="contNo">No</button>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+  <script src="../js/registrocontribuyentes.js"></script>
+</body>
+
+<!-- Modal de Confirmación para Volver al Menú -->
+<div id="modalMenu" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-icon">
+      <i class="fas fa-home"></i> 
+    </div>
+    <h3>¿Volver al menú principal?</h3>
+    <p>Se perderán los datos que no hayas guardado en este formulario.</p>
+    <div class="modal-buttons">
+      <button onclick="cerrarModalMenu()" class="btn-cancelar">Seguir aquí</button>
+      <button onclick="irAlMenu()" class="btn-confirmar">Sí, volver</button>
+    </div>
+  </div>
+</div>
+</html>

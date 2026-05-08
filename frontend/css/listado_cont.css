@@ -1,0 +1,248 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.menu button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* BARRA ROJA */
+.barra {
+  background-color: #8B0000;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background: #c0392b;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.barra input {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+}
+
+/* INFO */
+.info {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* TABLA */
+.tabla-container {
+  overflow-x: auto;
+  padding: 0 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background-color: #e6e6e6;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ESTATUS */
+.activo {
+  background-color: green;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.inactivo {
+  background-color: gray;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* PAGINACIÓN */
+.paginacion {
+  padding: 15px;
+  text-align: right;
+}
+
+.paginacion span {
+  margin: 5px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.paginacion .activo {
+  background-color: rgb(152, 2, 2);
+  color: white;
+}
+
+.btn, .menu button {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Esto hace que el efecto sea suave */
+}
+
+.btn:hover, .menu button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  filter: brightness(1.1); 
+}
+
+.btn:active, .menu button:active {
+  transform: translateY(0); 
+}
+
+.switch {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  width: fit-content;
+}
+
+.switch button {
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: 0.3s;
+}
+
+.switch button.selected {
+  background-color: #8B0000; 
+  color: white;
+}
+
+.switch button:not(.selected):hover {
+  background-color: #e0e0e0;
+}
+
+.buscador-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.buscador-container input {
+    padding: 10px 35px 10px 15px; /* Espacio extra a la derecha para la lupa */
+    border-radius: 20px; /* Más redondeado se ve mejor */
+    border: none;
+    width: 250px;
+    outline: none;
+}
+
+.icono-lupa {
+    position: absolute;
+    right: 15px;
+    color: #8B0000; /* Color guinda para que resalte */
+    pointer-events: none; 
+}
+/*MODAL*/
+/* Fondo oscuro */
+.modal {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Caja */
+.modal-content {
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  width: 350px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+  animation: aparecer 0.3s ease;
+}
+
+/* Animación */
+@keyframes aparecer {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Texto */
+#textoModal {
+
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Botón */
+.btn-modal {
+
+  background: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-modal:hover {
+  background: #a00000;
+}

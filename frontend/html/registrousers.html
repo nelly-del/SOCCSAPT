@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de usuarios</title>
+  <link rel="stylesheet" href="../css/registrousuarios.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Crear usuario</h1>
+
+ <form id="formRegistro">
+
+  <div class="input-group">
+    <i class="bx bx-user"></i>
+    <input type="text" id="usuario" placeholder="Nombre completo" required>
+  </div>
+
+  <div class="input-group">
+    <i class="bx bx-envelope"></i>
+    <input type="email" id="correo" placeholder="Correo electrónico" required>
+  </div>
+
+  <div class="input-group">
+  <i class="bx bx-shield-quarter"></i>
+
+  <select id="id_rol" required>
+    <option value="" disabled selected>Asignar Rol</option>
+    <option value="1">Administrador</option>
+    <option value="2">Cajero</option>
+    <option value="3">Auxiliar administrativo</option>
+    <option value="4">Contador</option>
+  </select>
+</div>
+
+  <div class="input-group">
+    <i class="bx bx-lock-alt"></i>
+    <input type="password" id="contrasena" placeholder="Contraseña" required>
+  </div>
+
+  <div class="input-group">
+    <i class="bx bx-lock-alt"></i>
+    <input type="password" id="confirmar" placeholder="Confirmar contraseña" required>
+  </div>
+
+  <button type="submit" class="btn">REGISTRAR</button>
+
+  <div class="login">
+    <p><a href="menu.html">Volver al menu</a></p>
+  </div>
+
+</form>
+<script src="../js/registrousuarios.js"></script>
+</div>
+
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+
+    <p id="textoModal"></p>
+
+    <button class="btn-modal" onclick="cerrarModal()">
+      Aceptar
+    </button>
+
+  </div>
+
+</div>
+</body>
+</html>

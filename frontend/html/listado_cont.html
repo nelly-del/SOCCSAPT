@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de contribuyentes</title>
+  <link rel="stylesheet" href="../css/listado_cont.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Listado de contribuyentes</h2>
+
+    <div class="menu">
+    <button class="btn" id="menu"><i class="fa-solid fa-house"></i> Menu</button>
+    <button class="btn" id="contrato"><i class="fa-regular fa-file"></i> Contratos</button>
+    <button class="btn" id="pago"><i class="fa-solid fa-coins"></i> Pagos</button>
+    <button class="btn" id="reporte"><i class="fa-solid fa-chart-bar"></i> Reportes</button>
+      
+    </div>
+  </div>
+
+  <!-- BARRA ROJA -->
+   <div class="barra">
+    <div class="acciones">
+        <button class="btn" id="agregar"><i class="fa-solid fa-plus"></i> Agregar</button>
+        <button class="btn" id="descargar"><i class="fa-solid fa-arrow-down"></i> Descargar</button>
+        
+    </div>
+
+    <!-- Contenedor del buscador -->
+    <div class="buscador-container">
+        <input type="text" id="buscar" placeholder="Buscar...">
+        <i class="fa-solid fa-magnifying-glass icono-lupa"></i>
+    </div>
+</div>
+
+  <!-- INFO -->
+  <p class="info" id="infoRegistros">Cargando...</p>
+
+  <!-- TABLA -->
+  <div class="tabla-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Apellido paterno</th>
+           <th>Apellido materno</th>
+          <th>RFC</th>
+          <th>Estado</th>
+          <th>Municipio</th>
+          <th>Colonia</th>
+          <th>Calle</th>
+          <th>CP</th>
+          <th>Estatus</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGINACIÓN -->
+  <div class="paginacion"></div>
+  <!--MODAL-->
+  <div id="modal" class="modal">
+  <div class="modal-content">
+    <p id="textoModal"></p>
+    <button class="btn-modal" onclick="cerrarModal()">
+      Aceptar
+    </button>
+  </div>
+
+  <script src="../js/listado_cont.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  
+</body>
+</html>

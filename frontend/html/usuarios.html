@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de usuarios</title>
+  <link rel="stylesheet" href="../css/usuarios.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Listado de usuarios</h2>
+    <button class="btn menu-btn" id="menu">
+      <i class="fa-solid fa-house"></i> Menú
+    </button>
+  </div>
+
+  <!-- BARRA -->
+  <div class="barra">
+
+    <div class="acciones">
+      <button class="btn" id="nuevo"><i class="fa-solid fa-plus"></i>Nuevo</button>
+      <button class="btn" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
+      <button class="btn" id="ver"><i class="fa-solid fa-eye"></i> Ver</button>
+    </div>
+
+    <div class="buscador">
+      <input type="text" id="buscar" placeholder="Buscar...">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+  </div>
+
+  <!-- INFO -->
+  <p class="info" id="infoUsuarios">Cargando...</p>
+
+  <!-- TABLA -->
+  <div class="tabla-container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Usuario</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
+      <tbody id="tablaBody">
+        <!-- datos dinámicos -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="../js/usuarios.js"></script>
+</body>
+</html>

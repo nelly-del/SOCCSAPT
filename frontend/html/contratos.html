@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de contratos con adeudos</title>
+  <link rel="stylesheet" href="../css/contratos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+  <h1>Lista de contratos con adeudos</h1>
+  <button class="btn menu-btn" id="menu">
+      <i class="fa-solid fa-house"></i> Menú
+    </button>
+  </header>
+
+<section class="actions">
+  
+  <button>Descargar</button>
+  <button>Limpiar</button>
+  <button class="btn" id="regresar"><i class="fa-solid fa-arrow-left"></i> Regresar</button>
+</section>
+
+<section class="filters">
+  <div>
+    <label>Fecha de corte</label>
+    <input type="date">
+  </div>
+
+  <div>
+    <label>Calle</label>
+    <select>
+      <option>Seleccione</option>
+    </select>
+  </div>
+</section>
+
+
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>Contrato</th>
+      <th>Contrato anterior</th>
+      <th>Nombre</th>
+      <th>Domicilio propietario</th>
+      <th>Domicilio contrato</th>
+      <th>Tipo toma</th>
+      <th>Mes inicio</th>
+      <th>Mes actual</th>
+      <th>Meses pendientes</th>
+      <th>Cuota</th>
+      <th>Recargos</th>
+      <th>Total recargos</th>
+      <th>Importe agua</th>
+      <th>Total a pagar</th>
+    </tr>
+  </thead>
+  <tbody id="tabla-body"></tbody>
+</table>
+</div>
+
+<script src="../js/contratos.js"></script>
+</body>
+</html>

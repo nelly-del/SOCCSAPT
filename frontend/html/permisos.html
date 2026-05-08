@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuración de permisos</title>
+  <link rel="stylesheet" href="../css/permisos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h2>Configuración de Permisos</h2>
+  <button class="btn menu" onclick="window.location.href='menu.html'">
+    <i class="fa-solid fa-house"></i> Menú
+  </button>
+</div>
+
+<!-- BARRA -->
+<div class="barra">
+  <button class="btn" id="regresar"><i class="fa-solid fa-arrow-left"></i> Regresar</button>
+  <button class="btn" id="guardar"><i class="fa-solid fa-save"></i> Guardar</button>
+</div>
+
+<!-- USUARIO -->
+<div class="usuario-select">
+  <label>Usuario:</label>
+  <select id="usuarioSelect">
+    <option value="">Seleccione al usuario</option>
+  </select>
+</div>
+
+<!-- TABLA -->
+<div class="tabla-container">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Módulo</th>
+        <th>Nuevo</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        <th>Ver</th>
+      </tr>
+    </thead>
+
+    <tbody id="tablaPermisos">
+      <!-- dinámico -->
+    </tbody>
+  </table>
+</div>
+
+<script src="../js/permisos.js"></script>
+
+</body>
+</html>

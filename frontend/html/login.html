@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" href="../css/login.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+	
+<body>
+	<div class="container">
+		<h1>Iniciar Sesión</h1>
+		<form id="formLogin">
+
+  <div class="email">
+    <i class="bx bx-envelope"></i>
+    <input type="email" id="correo" placeholder="Correo electronico" required>
+  </div>
+
+  <div class="contraseña">
+    <i class="bx bx-lock-alt"></i>
+    <input type="password" id="contrasena" placeholder="Contraseña" required>
+  </div>
+
+  <div class="remember-password">
+    <label><input type="checkbox">Recordar mis datos</label>
+  </div>
+
+  <button type="submit" class="btn">
+    <b>INICIAR SESIÓN</b>
+  </button>
+
+</form>
+
+	</div>
+	<img src="../../logos/logo2.jpeg" class="logo"/>
+
+
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+
+    <p id="textoModal"></p>
+
+    <button class="btn-modal" onclick="cerrarModal()">
+      Aceptar
+    </button>
+
+  </div>
+
+</div>
+</body>
+</html>
+<script src="../js/login.js"></script>
