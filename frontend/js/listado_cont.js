@@ -123,7 +123,9 @@ async function cambiarEstatus(codigo, estatusActual) {
   let accion = estatusActual == 1 ? "dar de baja" : "reactivar";
 
   //Retroalimentacion de confirmacion 
-  if (!confirm(`¿Seguro que quieres ${accion} este contribuyente?`)) return;
+ abrirModalConfirmacion(
+  `¿Seguro que quieres ${accion} este contribuyente?`,
+  async () => {
 
   //Enviar al backend el nuevo estatus
   const res = await fetch("http://localhost:3000/estatus", {
@@ -137,10 +139,10 @@ async function cambiarEstatus(codigo, estatusActual) {
     })
   });
   const respuesta = await res.text();
-  alert(respuesta);
-
-//Recargar la tabla
-  cargarDatos(paginaActual);
+  mostrarModal(respuesta);
+    cargarDatos(paginaActual);
+  }
+);
 }
 
 //BUSCAR
@@ -236,4 +238,21 @@ function cerrarModal() {
 
   document.getElementById("modal").style.display = "none";
 
+}
+////////////////////////////FUNCIONES DE MODAL DE ESTATUS//////////////////////////////////////////////////////
+function abrirModalConfirmacion(texto, callback) {
+
+  document.getElementById("modalConfirmacion").style.display = "flex";
+
+  document.getElementById("textoConfirmacion").textContent = texto;
+
+  document.getElementById("btnAceptar").onclick = () => {
+    cerrarModalConfirmacion();
+    callback();
+  };
+
+}
+
+function cerrarModalConfirmacion() {
+  document.getElementById("modalConfirmacion").style.display = "none";
 }

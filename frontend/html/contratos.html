@@ -1,67 +1,126 @@
+<!-- contratos.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de contratos con adeudos</title>
+  <title>Listado de contratos</title>
+
   <link rel="stylesheet" href="../css/contratos.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
-<header class="header">
-  <h1>Lista de contratos con adeudos</h1>
-  <button class="btn menu-btn" id="menu">
+<!-- HEADER -->
+<div class="header">
+
+  <h2>Listado de contratos</h2>
+
+  <div class="menu">
+
+    <button class="btn-menu" id="menu">
       <i class="fa-solid fa-house"></i> Menú
     </button>
-  </header>
 
-<section class="actions">
-  
-  <button>Descargar</button>
-  <button>Limpiar</button>
-  <button class="btn" id="regresar"><i class="fa-solid fa-arrow-left"></i> Regresar</button>
-</section>
+    <button class="btn-menu" id="contribuyentes">
+      <i class="fa-solid fa-users"></i> Contribuyentes
+    </button>
 
-<section class="filters">
-  <div>
-    <label>Fecha de corte</label>
-    <input type="date">
+    <button class="btn-menu" id="pagos">
+      <i class="fa-solid fa-coins"></i> Pagos
+    </button>
+
+    <button class="btn-menu" id="reportes">
+      <i class="fa-solid fa-chart-column"></i> Reportes
+    </button>
+
   </div>
 
-  <div>
-    <label>Calle</label>
-    <select>
-      <option>Seleccione</option>
-    </select>
-  </div>
-</section>
-
-
-<div class="table-container">
-<table>
-  <thead>
-    <tr>
-      <th>Contrato</th>
-      <th>Contrato anterior</th>
-      <th>Nombre</th>
-      <th>Domicilio propietario</th>
-      <th>Domicilio contrato</th>
-      <th>Tipo toma</th>
-      <th>Mes inicio</th>
-      <th>Mes actual</th>
-      <th>Meses pendientes</th>
-      <th>Cuota</th>
-      <th>Recargos</th>
-      <th>Total recargos</th>
-      <th>Importe agua</th>
-      <th>Total a pagar</th>
-    </tr>
-  </thead>
-  <tbody id="tabla-body"></tbody>
-</table>
 </div>
 
+<!-- BARRA -->
+<div class="barra">
+
+  <div class="acciones">
+
+    <button class="btn" id="agregarcontrato">
+      <i class="fa-solid fa-circle-plus"></i> Agregar Contrato
+    </button>
+
+    <button class="btn">
+      <i class="fa-solid fa-circle-xmark"></i> Eliminar
+    </button>
+
+    <button class="btn">
+      <i class="fa-solid fa-pen-to-square"></i> Editar contrato
+    </button>
+
+    <button class="btn" id="excel">
+      <i class="fa-solid fa-download"></i> Descargar
+    </button>
+
+    <button class="btn">
+      <i class="fa-solid fa-hand-holding-droplet"></i>
+      Pagar servicio de agua
+    </button>
+
+  </div>
+
+  <!-- BUSCADOR -->
+  <div class="buscador">
+
+    <input type="text" id="buscar" placeholder="Buscar">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+  </div>
+
+</div>
+
+<!-- INFO -->
+<p class="info" id="infoRegistros">
+  Cargando contratos...
+</p>
+
+<!-- TABLA -->
+<div class="tabla-container">
+
+<table>
+
+<thead>
+<tr>
+
+  <th>Contrato</th>
+  <th>Contribuyente</th>
+  <th>Nombre</th>
+  <th>Último pago</th>
+  <th>Pago inicio</th>
+  <th>Pago fin</th>
+  <th>Contrato anterior</th>
+  <th>Unidad</th>
+  <th>Estatus</th>
+  <th>Bomba</th>
+  <th>Tipo de uso</th>
+
+</tr>
+</thead>
+
+<tbody id="tablaContratos">
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- PAGINACION -->
+<div class="paginacion"></div>
+
 <script src="../js/contratos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
 </html>

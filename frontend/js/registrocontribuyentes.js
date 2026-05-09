@@ -54,7 +54,7 @@ document.getElementById("guardar").addEventListener("click", async () => {
   };
 
   if (!datos.nombre || !datos.apellidoP) {
-    alert("Faltan datos obligatorios");
+    mostrarModal("Faltan datos obligatorios");
     return;
   }
 
@@ -68,28 +68,36 @@ document.getElementById("guardar").addEventListener("click", async () => {
     });
 
     const respuesta = await res.text();
-    alert(respuesta);
+    mostrarModal(respuesta);
 
   } catch (error) {
-    alert("Error al conectar con el servidor");
+    mostrarModal("Error al conectar con el servidor");
   }
 });
 
 
 document.getElementById("cancelar").addEventListener("click", () => {
-  const confirmar = confirm("¿Seguro que quieres cancelar?");
-  
-  if (confirmar) {
-    document.getElementById("formulario").reset();
-    propietario = null;
-    contrato = null;
 
+  abrirModalConfirmacion(
+    "¿Seguro que quieres cancelar el registro?",
+    
+    () => {
 
-    document.getElementById("propSi").style.background = "";
-    document.getElementById("propNo").style.background = "";
-    document.getElementById("contSi").style.background = "";
-    document.getElementById("contNo").style.background = "";
-  }
+      document.getElementById("formulario").reset();
+
+      propietario = null;
+      contrato = null;
+
+      document.getElementById("propSi").style.background = "";
+      document.getElementById("propNo").style.background = "";
+      document.getElementById("contSi").style.background = "";
+      document.getElementById("contNo").style.background = "";
+
+      mostrarModal("Formulario cancelado");
+
+    }
+  );
+
 });
 
 // Función para abrir el modal
@@ -107,4 +115,37 @@ function cerrarModalMenu() {
 function irAlMenu() {
     window.location.href = "menu.html"; 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////// MODAL NORMAL //////////////////
+
+function mostrarModal(mensaje) {
+
+  document.getElementById("textoModal").textContent = mensaje;
+
+  document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarModal() {
+
+  document.getElementById("modal").style.display = "none";
+}
+
+//////////////// MODAL CONFIRMACION //////////////////
+
+function abrirModalConfirmacion(texto, callback) {
+
+  document.getElementById("modalConfirmacion").style.display = "flex";
+
+  document.getElementById("textoConfirmacion").textContent = texto;
+
+  document.getElementById("btnAceptar").onclick = () => {
+
+    cerrarModalConfirmacion();
+
+    callback();
+  };
+}
+
+function cerrarModalConfirmacion() {
+
+  document.getElementById("modalConfirmacion").style.display = "none";
+}
