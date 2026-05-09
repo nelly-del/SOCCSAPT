@@ -76,9 +76,27 @@
       Aceptar
     </button>
   </div>
+</div>
 
-  <script src="../js/listado_cont.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="../js/listado_cont.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   
 </body>
+<!--MODAL-->
+<div id="modalConfirmacion" class="modal">
+  <div class="modal-content">
+    <p id="textoConfirmacion"></p>
+    <div class="modal-buttons">
+      <button class="btn-cancelar" onclick="cerrarModalConfirmacion()">
+        Cancelar
+      </button>
+      <button class="btn-confirmar" id="btnAceptar">
+        Confirmar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </html>

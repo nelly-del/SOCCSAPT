@@ -290,3 +290,77 @@ app.get("/contribuyentes-todos", (req, res) => {
     res.json(results);
   });
 });
+
+//CONTRATOS
+app.get("/contratos", (req,res)=>{
+
+  const pagina = parseInt(req.query.pagina) || 1;
+
+  const limite = 10;
+
+  const offset = (pagina - 1) * limite;
+
+  const sql = `
+  
+    SELECT * FROM contratos
+    LIMIT ? OFFSET ?
+  
+  `;
+
+  conexion.query(
+    sql,
+    [limite, offset],
+    (err,results)=>{
+
+      if(err){
+
+        console.error(err);
+
+        res.send("Error");
+
+      }else{
+
+        conexion.query(
+          "SELECT COUNT(*) AS total FROM contratos",
+          (err2,countResult)=>{
+
+            res.json({
+
+              datos: results,
+              total: countResult[0].total
+
+            });
+
+          }
+        );
+
+      }
+
+    }
+  );
+
+});
+//TRAER TODOS LOS CONTRATOS EXCEL// TODOS LOS CONTRATOS
+
+app.get("/contratos-todos",(req,res)=>{
+
+  conexion.query(
+    "SELECT * FROM contratos",
+    (err,results)=>{
+
+      if(err){
+
+        console.error(err);
+
+        res.send("Error");
+
+      }else{
+
+        res.json(results);
+
+      }
+
+    }
+  );
+
+});
