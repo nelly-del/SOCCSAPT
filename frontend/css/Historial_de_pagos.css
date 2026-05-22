@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+
+/* BARRA SUPERIOR*/
+
+.container {
+    background-color: #8B0000;
+    color: white;
+    padding: 20px;
+    height: 100px;
+
+}
+
+.titulo {
+    font-size: 25px;
+    transform: translate(0px, -25px);
+}
+
+
+/* BOTONES */
+
+.botones {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    transform: translate(0px, -25px);
+
+}
+
+.btn {
+    background-color: #a52a2a;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #7a1f1f;
+}
+
+
+/* BUSCADOR */
+
+.busqueda {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transform: translate(1000px, -85px);
+}
+
+
+.busqueda input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*TABLA*/
+
+.tabla-contenedor {
+    padding: 30px;
+}
+
+
+.tablaPagos {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.tablaPagos th {
+    background-color: #8B0000;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+
+}
+
+
+.tablaPagos td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+
+}
+
+
+.tablaPagos tr:hover {
+    background-color: #f5f5f5;
+
+}
+
+
+/*MODAL*/
+
+.modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    text-align: center;
+    animation: aparecer .3s ease;
+}
+
+
+@keyframes aparecer {
+
+    from {
+        transform: scale(.7);
+        opacity: 0;
+
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+
+    }
+
+}
+
+
+.btn-modal {
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+
+}
+
+
+.btn-modal:hover {
+    background: #7a1f1f;
+
+}
+
+.cancelar-modal{
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+
+
+}
+.cancelar-modal:hover{
+    background-color: #7a1f1f;
+
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .busqueda {
+        transform: translate(0px, 0px);
+        margin-top: 20px;
+        flex-wrap: wrap;
+
+    }
+}
+
+@media (max-width: 600px) {
+    .tablaPagos {
+        font-size: 12px;
+    }
+    .tablaPagos th,
+    .tablaPagos td {
+        padding: 8px;
+
+    }
+
+}
+
