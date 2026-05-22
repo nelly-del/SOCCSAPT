@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Historial de pagos</title>
+
+<link rel="stylesheet" href="../css/Historial de pagos.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- BARRA SUPERIOR -->
+
+<div class="container">
+
+    <h2 class="titulo">
+        Historial de pagos
+    </h2>
+
+    <!-- BOTONES -->
+
+    <div class="botones">
+
+        <button type="button" class="btn menu" id="btnMenu">
+            <i class="bx bx-menu"></i>
+            Menú
+        </button>
+		
+		<button type="button" id="btnLimpiar" class="btn">
+			<i class="fa-solid fa-broom"></i> 
+		Limpiar
+		</button>
+		
+		<button type="button" id="btnOrdenar" class="btn">
+		Ordenar
+		</button>
+
+    </div>
+
+    <!-- BUSCADOR -->
+
+    <div class="busqueda">
+
+        <input 
+        type="date" 
+        id="busquedaFecha"
+        >
+
+        <input 
+        type="text" 
+        id="busquedaNombre"
+        placeholder="Buscar contribuyente"
+        >
+
+        <button type="button" id="btnBuscar" class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TABLA -->
+
+<div class="tabla-contenedor">
+
+<table class="tablaPagos">
+
+    <thead>
+
+        <tr>
+
+            <th>Fecha</th>
+
+            <th>Contribuyente</th>
+
+            <th>Número de contrato</th>
+
+            <th>Monto pagado</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="tablaBody">
+
+    </tbody>
+
+</table>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <p id="textoModal"></p>
+
+        <button class="btn-modal" onclick="cerrarModal()">
+         Aceptar
+        </button>
+		
+		<button class="cancelar-modal" onClick="cancelarModal()">
+		Cancelar
+		</button>
+
+    </div>
+
+</div>
+
+<script src="../js/Historial de pagos.js"></script>
+
+</body>
+</html>
