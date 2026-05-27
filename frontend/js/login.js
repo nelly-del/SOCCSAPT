@@ -21,7 +21,7 @@ document.getElementById("formLogin").addEventListener("submit", async (e) => {
 
     if (respuesta.exito) {
       // GUARDAMOS EL ROL Y EL NOMBRE PARA USARLOS DESPUÉS
-      localStorage.setItem("rolUsuario", respuesta.usuario.rol);
+      localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
       localStorage.setItem("nombreUsuario", respuesta.usuario.nombre);
 
       mostrarModal("Bienvenido " + respuesta.usuario.nombre);
@@ -62,3 +62,13 @@ function mostrarModal(mensaje) {
 function cerrarModal() {
   document.getElementById("modal").style.display = "none";
 }
+
+localStorage.setItem(
+  "usuario",
+  JSON.stringify({
+    id: respuesta.usuario.id,
+    nombre: respuesta.usuario.nombre,
+    rol: respuesta.usuario.rol,
+    correo: correo
+  })
+);

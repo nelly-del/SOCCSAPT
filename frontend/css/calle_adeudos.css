@@ -1,0 +1,354 @@
+
+/* =========================
+   ESTILOS GENERALES
+========================= */
+
+body{
+  margin: 0;
+  /* Elimina espacios externos del navegador */
+
+  font-family: 'Poppins', sans-serif;
+  /* Fuente principal */
+
+  background-color: #f5f5f5;
+  /* Fondo gris claro */
+}
+
+/* =========================
+   HEADER SUPERIOR
+========================= */
+
+.topbar{
+  display: flex;
+  /* Coloca elementos en horizontal */
+
+  justify-content: space-between;
+  /* Separa el titulo y el boton */
+
+  align-items: center;
+  /* Centra verticalmente */
+
+  padding: 10px 20px;
+  /* Espaciado interno */
+
+  background: white;
+  /* Fondo blanco */
+}
+
+/* =========================
+   BOTON MENU
+========================= */
+
+.btn-menu{
+
+  background-color: #8B0000;
+  /* Color rojo oscuro */
+
+  color: white;
+  /* Texto blanco */
+
+  border: none;
+  /* Quita borde */
+
+  padding: 8px 15px;
+  /* Espaciado interno */
+
+  border-radius: 5px;
+  /* Bordes redondeados */
+
+  cursor: pointer;
+  /* Cursor tipo mano */
+}
+
+/* =========================
+   BARRA ROJA SUPERIOR
+========================= */
+
+.barra-botones{
+
+  background-color: #8B0000;
+  /* Fondo rojo */
+
+  padding: 10px 20px;
+  /* Espaciado interno */
+
+  display: flex;
+  /* Acomoda elementos horizontalmente */
+
+  justify-content: space-between;
+  /* Separa botones y buscador */
+
+  align-items: center;
+  /* Centra verticalmente */
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-regresar,
+.btn-guardar{
+
+  background: #c0392b;
+  /* Fondo rojo */
+
+  border: none;
+  /* Sin borde */
+
+  color: white;
+  /* Texto blanco */
+
+  padding: 8px 12px;
+  /* Espaciado interno */
+
+  margin-right: 5px;
+  /* Separacion entre botones */
+
+  border-radius: 5px;
+  /* Bordes redondeados */
+
+  cursor: pointer;
+  /* Cursor mano */
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.buscador-container{
+
+  position: relative;
+  /* Permite posicionar la lupa */
+}
+
+/* INPUT BUSCADOR */
+
+.barra-busqueda{
+
+  padding: 8px 35px 8px 10px;
+  /* Espacio interno */
+
+  border-radius: 5px;
+  /* Bordes redondeados */
+
+  border: none;
+  /* Sin borde */
+
+  width: 220px;
+  /* Ancho */
+}
+
+/* ICONO LUPA */
+
+.icono-lupa{
+
+  position: absolute;
+  /* Posicion libre */
+
+  right: 10px;
+  /* Distancia derecha */
+
+  top: 50%;
+  /* Centrado vertical */
+
+  transform: translateY(-50%);
+  /* Ajusta el centrado */
+
+  color: gray;
+  /* Color gris */
+}
+
+/* =========================
+   EFECTOS HOVER
+========================= */
+
+.btn-menu,
+.btn-regresar,
+.btn-guardar{
+
+  transition: all 0.3s ease;
+  /* Animacion suave */
+}
+
+.btn-menu:hover,
+.btn-regresar:hover,
+.btn-guardar:hover{
+
+  transform: translateY(-3px);
+  /* Eleva ligeramente el boton */
+
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  /* Sombra */
+
+  filter: brightness(1.1);
+  /* Aumenta brillo */
+}
+
+/* =========================
+   CONTENEDOR FILTROS
+========================= */
+
+.filtros{
+
+  display: flex;
+  /* Elementos horizontales */
+
+  align-items: end;
+  /* Alinea abajo */
+
+  width: 100%;
+  /* Ocupa todo el ancho */
+
+  padding: 20px;
+
+  box-sizing: border-box;
+  /* Incluye padding en el ancho */
+}
+
+/* =========================
+   FECHA DE CORTE
+========================= */
+
+.fecha-corte{
+
+  display: flex;
+
+  flex-direction: column;
+  /* Label arriba e input abajo */
+}
+
+/* INPUT FECHA */
+
+.fecha-corte input{
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  border: 1px solid #ccc;
+}
+
+/* =========================
+   SELECT DE CALLE
+========================= */
+
+.usuario-select{
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin-left: 20%
+  /* Empuja el select hacia la derecha */
+}
+
+/* SELECT */
+
+.usuario-select select{
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  border: 1px solid #ccc;
+
+  min-width: 250px;
+  /* Tamaño minimo */
+}
+
+/* =========================
+   CONTENIDO GENERAL
+========================= */
+
+.contenido{
+
+  display: flex;
+  /* Tabla y grafica en horizontal */
+
+  justify-content: space-between;
+  /* Separacion */
+
+  gap: 20px;
+  /* Espacio entre elementos */
+
+  padding: 20px;
+}
+
+/* =========================
+   TABLA
+========================= */
+
+.tabla-container{
+
+  width: 65%;
+  /* Tamaño tabla */
+}
+
+/* TABLA GENERAL */
+
+table{
+
+  width: 100%;
+
+  border-collapse: collapse;
+  /* Une bordes */
+
+  background: white;
+}
+
+/* ENCABEZADOS */
+
+th{
+
+  background: #e5e5e5;
+
+  padding: 10px;
+
+  text-align: left;
+}
+
+/* CELDAS */
+
+td{
+
+  padding: 10px;
+
+  border-top: 1px solid #ccc;
+}
+
+/* =========================
+   GRAFICA
+========================= */
+
+.grafica-container{
+
+  width: 30%;
+
+  text-align: center;
+}
+
+/* GRAFICA VACIA */
+
+.grafica-vacia{
+
+  width: 100%;
+
+  height: 250px;
+
+  background: white;
+
+  border: 2px dashed #ccc;
+  /* Borde punteado */
+
+  display: flex;
+
+  justify-content: center;
+  /* Centra horizontal */
+
+  align-items: center;
+  /* Centra vertical */
+
+  color: gray;
+
+  font-size: 18px;
+}

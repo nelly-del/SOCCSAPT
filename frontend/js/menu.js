@@ -1,3 +1,16 @@
+// USUARIO LOGUEADO
+
+const usuario = JSON.parse(
+  localStorage.getItem("usuario")
+);
+
+// MOSTRAR NOMBRE EN HEADER
+
+document.getElementById(
+  "nombreUsuario"
+).textContent =
+usuario.nombre;
+
 
 function ir(seccion) {
     

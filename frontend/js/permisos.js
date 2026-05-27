@@ -7,7 +7,7 @@ const modulos = [
   "Estado de cuenta"
 ];
 
-// 🔽 cargar usuarios
+//  cargar usuarios
 async function cargarUsuarios() {
   const res = await fetch("http://localhost:3000/usuarios");
   const data = await res.json();
@@ -38,43 +38,112 @@ function crearTabla() {
   });
 }
 
-// 🔽 guardar permisos
-document.getElementById("guardar").addEventListener("click", async () => {
+// guardar permisos
+document.getElementById("guardar")
+.addEventListener("click", async ()=>{
 
-  const usuario = document.getElementById("usuarioSelect").value;
+  const id_rol = document.getElementById("usuarioSelect").value;
 
-  if (!usuario) {
-    alert("Selecciona un usuario");
+  if(!id_rol){
+    mostrarModal("Selecciona un rol");
     return;
   }
 
-  const checks = document.querySelectorAll("input[type='checkbox']");
-
   let permisos = [];
+  modulos.forEach(mod => {
+    permisos.push({
+      modulo: mod,
 
-  checks.forEach(chk => {
-    if (chk.checked) {
-      permisos.push({
-        modulo: chk.dataset.mod,
-        permiso: chk.dataset.perm
-      });
+      ver:
+      document.querySelector(
+        `[data-mod="${mod}"][data-perm="ver"]`
+      ).checked ? 1 : 0,
+
+      nuevo:
+      document.querySelector(
+        `[data-mod="${mod}"][data-perm="nuevo"]`
+      ).checked ? 1 : 0,
+
+      editar:
+      document.querySelector(
+        `[data-mod="${mod}"][data-perm="editar"]`
+      ).checked ? 1 : 0,
+
+      eliminar:
+      document.querySelector(
+        `[data-mod="${mod}"][data-perm="eliminar"]`
+      ).checked ? 1 : 0
+
+    });
+
+  });
+
+  await fetch(
+
+    "http://localhost:3000/permisos",
+
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body: JSON.stringify({
+        id_rol,
+        permisos
+
+      })
     }
-  });
+  );
 
-  await fetch("http://localhost:3000/permisos", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      usuario,
-      permisos
-    })
-  });
+  mostrarModal(
+    "Permisos guardados"
+  );
 
-  alert("Permisos guardados");
 });
 
-// init
-cargarUsuarios();
+//ROLES
+async function cargarRoles(){
+  const res = await fetch("http://localhost:3000/roles");
+  const data = await res.json();
+  const select = document.getElementById("usuarioSelect");
+
+  select.innerHTML = `
+    <option value="">
+      Selecciona un rol
+    </option>
+  `;
+
+  data.forEach(r => {
+    select.innerHTML += `
+      <option value="${r.id_rol}">
+        ${r.nombre_rol}
+      </option>
+    `;
+  });
+}
+cargarRoles();
 crearTabla();
+// FUNCIONES MODAL
+function mostrarModal(mensaje){
+  document.getElementById("textoModal").textContent = mensaje;
+  document.getElementById("modal").style.display = "flex";
+}
+function cerrarModal(){
+  document.getElementById(
+    "modal"
+  ).style.display = "none";
+}
+
+window.onclick = function(event){
+
+  const modal =
+  document.getElementById("modal");
+
+  if(event.target == modal){
+
+    cerrarModal();
+
+  }
+
+}
