@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Recibos</title>
+
+    <link rel="stylesheet" href="../css/recibos.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+    <h1>Recibos / Adeudos</h1>
+
+    <button class="btn-menu"
+    onclick="window.location.href='menu.html'">
+
+        <i class="fa-solid fa-house"></i>
+        Menú
+
+    </button>
+
+</header>
+
+<!-- BARRA -->
+
+<div class="barra-botones">
+
+    <div>
+
+        <button class="btn-regresar"
+        onclick="window.location.href='menu.html'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+            Regresar
+
+        </button>
+
+        <button class="btn-generar"
+        id="btnGenerar">
+
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            Generar recibo
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FORMULARIO -->
+
+<div class="contenedor-formulario">
+
+    <div class="campo">
+
+        <label>Contrato</label>
+
+        <input type="number"
+        id="idContrato">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Codigo de contribuyente</label>
+
+        <input type="text"
+        id="codigoContribuyente">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Contribuyente</label>
+
+        <input type="text"
+        id="contribuyente">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Servicio</label>
+
+        <select id="servicio">
+
+            <option value="">
+                Seleccione
+            </option>
+
+            <option value="Agua">
+                Agua
+            </option>
+
+            <option value="Drenaje">
+                Drenaje
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="campo">
+
+        <label>Mes inicio</label>
+
+        <input type="date"
+        id="mesInicio">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Mes fin</label>
+
+        <input type="date"
+        id="mesFin">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Meses morosos</label>
+
+        <input type="number"
+        id="mesesMorosos">
+
+    </div>
+
+    <div class="campo">
+
+        <label>Importe</label>
+
+        <input type="number"
+        id="importe">
+
+    </div>
+
+    <div class="campo campo-completo">
+
+        <label>Observaciones</label>
+
+        <textarea id="observaciones"></textarea>
+
+    </div>
+
+</div>
+
+<!-- TABLA -->
+
+<div class="contenedor-tabla">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Contrato</th>
+                <th>Contribuyente</th>
+                <th>Servicio</th>
+                <th>Meses</th>
+                <th>Importe</th>
+                <th>Estado</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tablaAdeudos">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <p id="mensajeModal"></p>
+
+        <button onclick="cerrarModal()">
+            Cerrar
+        </button>
+
+    </div>
+
+</div>
+
+<script src="../js/recibos.js"></script>
+
+</body>
+</html>

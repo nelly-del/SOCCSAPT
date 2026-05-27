@@ -51,8 +51,8 @@
       <i class="fa-solid fa-circle-plus"></i> Agregar Contrato
     </button>
 
-    <button class="btn">
-      <i class="fa-solid fa-circle-xmark"></i> Eliminar
+    <button class="btn" id="cancelar">
+      <i class="fa-solid fa-circle-xmark"></i> Cancelar contrato
     </button>
 
     <button class="btn">
@@ -95,11 +95,11 @@
 <tr>
 
   <th>Contrato</th>
+  <th>Codigo</th>
   <th>Contribuyente</th>
-  <th>Nombre</th>
   <th>Último pago</th>
   <th>Pago inicio</th>
-  <th>Pago fin</th>
+  <th>Creacion del contrato</th>
   <th>Contrato anterior</th>
   <th>Unidad</th>
   <th>Estatus</th>
@@ -120,7 +120,83 @@
 <!-- PAGINACION -->
 <div class="paginacion"></div>
 
+
 <script src="../js/contratos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
+<!-- MODAL CANCELAR CONTRATO -->
+<div id="modalCancelar" class="modal">
+
+  <div class="modal-content modal-grande">
+
+    <h2>Cancelar contrato</h2>
+
+    <div class="infoContrato">
+
+      <p>
+        <strong>Contrato:</strong>
+        <span id="modalContrato"></span>
+      </p>
+
+      <p>
+        <strong>Contribuyente:</strong>
+        <span id="modalNombre"></span>
+      </p>
+
+      <p>
+        <strong>Estatus:</strong>
+        <span id="modalEstatus"></span>
+      </p>
+
+      <p>
+        <strong>Adeudos:</strong>
+
+        <span id="modalAdeudos"
+        class="sinAdeudos">
+
+        Sin adeudos
+
+        </span>
+
+      </p>
+
+    </div>
+
+    <div class="grupo">
+
+      <label>
+        Motivo de cancelación
+      </label>
+
+      <textarea
+      id="motivoCancelacion"
+      rows="4"
+      placeholder="Escribe el motivo de cancelación">
+      </textarea>
+
+    </div>
+
+    <div class="accionesModal">
+
+      <button
+      class="btn-cancelar"
+      onclick="cerrarModalCancelar()">
+
+      Cancelar
+
+      </button>
+
+      <button
+      class="btn-confirmar"
+      id="confirmarCancelacion">
+
+      Confirmar cancelación
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </html>

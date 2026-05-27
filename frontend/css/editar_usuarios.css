@@ -1,0 +1,225 @@
+body{
+
+  margin:0;
+
+  font-family:'Poppins',sans-serif;
+
+  background:#f5f5f5;
+
+}
+
+.contenedor{
+
+  width:550px;
+
+  margin:40px auto;
+
+  background:rgb(123, 1, 1);
+
+  padding:60px;
+
+  border-radius:15px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+}
+
+h1{
+
+  text-align:center;
+
+  color:#ffffff;
+
+  margin-bottom:30px;
+
+}
+
+.grupo{
+
+  margin-bottom:20px;
+
+}
+
+.grupo label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  font-weight:bold;
+
+}
+
+.grupo input,
+.grupo select{
+
+  width:100%;
+
+  padding:12px;
+
+  border:1px solid #ccc;
+
+  border-radius:10px;
+
+  font-size:15px;
+
+  outline:none;
+
+}
+
+.grupo input:focus,
+.grupo select:focus{
+
+  border-color:#8B0000;
+
+}
+
+.acciones{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  margin-top:30px;
+
+}
+
+.btnCancelar,
+.btnGuardar{
+
+  border:none;
+
+  padding:12px 18px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  color:white;
+
+  font-size:15px;
+
+}
+
+.btnCancelar{
+
+  background:#7f8c8d;
+
+}
+
+.btnGuardar{
+
+  background:#8B0000;
+
+}
+
+/* MODAL */
+
+.modal{
+
+  display:none;
+
+  position:fixed;
+
+  z-index:999;
+
+  left:0;
+  top:0;
+
+  width:100%;
+  height:100%;
+
+  background:rgba(0,0,0,.5);
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+.modal-content{
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:12px;
+
+  width:350px;
+
+  text-align:center;
+
+}
+
+.modal-content button{
+
+  margin-top:20px;
+
+  border:none;
+
+  background:#8B0000;
+
+  color:white;
+
+  padding:10px 20px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+}
+
+input,
+select{
+
+  width:100%;
+
+  padding:18px;
+
+  border-radius:10px;
+
+  border:1px solid #ccc;
+
+  font-size:18px;
+
+  outline:none;
+
+  transition:.3s;
+
+}
+
+input:focus,
+select:focus{
+
+  border:1px solid #a00000;
+
+  box-shadow:0 0 5px #a00000;
+
+}
+.btnGuardar{
+
+  background:#a00000;
+
+  color:white;
+
+  border:none;
+
+  padding:14px 22px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  transition:.3s;
+
+}
+
+.btnGuardar:hover{
+
+  background:#7a0000;
+
+}

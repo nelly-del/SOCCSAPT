@@ -164,3 +164,279 @@ tr:nth-child(even){
   background:#8B0000;
   color:white;
 }
+.modal-grande{
+  width: 500px;
+}
+
+.infoContrato{
+  margin-bottom: 20px;
+}
+
+.infoContrato p{
+  margin: 8px 0;
+}
+
+textarea{
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  resize: none;
+  border: 1px solid #ccc;
+  font-family: Poppins;
+}
+
+.accionesModal{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar{
+  background: #7f8c8d;
+}
+
+.btn-confirmar{
+  background: #c0392b;
+}
+.modal-grande{
+  width:500px;
+  border-radius:20px;
+}
+
+.infoContrato{
+  background:#f5f5f5;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.infoContrato p{
+  margin:10px 0;
+}
+
+#motivoCancelacion{
+  width:100%;
+  border:1px solid #ccc;
+  border-radius:12px;
+  padding:10px;
+  resize:none;
+  font-family:'Poppins',sans-serif;
+}
+
+.accionesModal{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+.btn-cancelar,
+.btn-confirmar{
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  color:white;
+}
+
+.btn-cancelar{
+  background:#7f8c8d;
+}
+
+.btn-confirmar{
+  background:#c0392b;
+}
+
+.btn-confirmar:disabled{
+  background:#ccc;
+  cursor:not-allowed;
+}
+
+.sinAdeudos{
+  color:green;
+  font-weight:bold;
+}
+
+.conAdeudos{
+  color:red;
+  font-weight:bold;
+}
+
+/* FONDO OSCURO */
+.modal{
+
+  display: none;
+
+  position: fixed;
+
+  z-index: 999;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.5);
+
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* CAJA DEL MODAL */
+.modal-content{
+
+  background: #fff;
+
+  width: 600px;
+
+  max-width: 90%;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  animation: aparecer 0.2s ease;
+
+}
+
+/* MODAL GRANDE */
+.modal-grande{
+
+  width: 700px;
+
+}
+
+/* TITULO */
+.modal-content h2{
+
+  margin-bottom: 20px;
+
+  color: #a40000;
+
+}
+
+/* INFO */
+.infoContrato{
+
+  margin-bottom: 20px;
+
+}
+
+.infoContrato p{
+
+  margin: 10px 0;
+
+  font-size: 16px;
+
+}
+
+/* TEXTAREA */
+#motivoCancelacion{
+
+  width: 100%;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  padding: 10px;
+
+  resize: none;
+
+  font-family: Poppins;
+
+}
+
+/* BOTONES */
+.accionesModal{
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+}
+
+.btn-cancelar{
+
+  background: #7f8c8d;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+.btn-confirmar{
+
+  background: #c0392b;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+/* ANIMACION */
+@keyframes aparecer{
+
+  from{
+
+    transform: scale(0.9);
+    opacity: 0;
+
+  }
+
+  to{
+
+    transform: scale(1);
+    opacity: 1;
+
+  }
+
+}
+
+/*ESTATUS*/
+.btn-estatus{
+
+  border:none;
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  color:white;
+
+  font-weight:bold;
+
+  transition:.3s;
+
+}
+
+.btn-estatus:hover{
+
+  transform:scale(1.05);
+
+}

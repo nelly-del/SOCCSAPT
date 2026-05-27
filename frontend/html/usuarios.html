@@ -3,57 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <title>Listado de usuarios</title>
-  <link rel="stylesheet" href="../css/usuarios.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="../css/usuarios.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- ===== HEADER ===== -->
+
   <div class="header">
+
     <h2>Listado de usuarios</h2>
-    <button class="btn menu-btn" id="menu">
-      <i class="fa-solid fa-house"></i> Menú
+
+    <button
+    class="btn menu-btn"
+    id="menu">
+
+      <i class="fa-solid fa-house"></i>
+      Menú
+
     </button>
+
   </div>
 
-  <!-- BARRA -->
+  <!-- ===== BARRA ===== -->
+
   <div class="barra">
 
     <div class="acciones">
-      <button class="btn" id="nuevo"><i class="fa-solid fa-plus"></i>Nuevo</button>
-      <button class="btn" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
-      <button class="btn" id="ver"><i class="fa-solid fa-eye"></i> Ver</button>
+
+      <button
+      class="btn"
+      id="nuevo">
+
+        <i class="fa-solid fa-plus"></i>
+        Nuevo
+
+      </button>
+
+      <button
+      class="btn"
+      id="eliminar">
+
+        <i class="fa-solid fa-trash"></i>
+        Eliminar usuario
+
+      </button>
+
+      <button
+      class="btn"
+      id="ver">
+
+        <i class="fa-solid fa-eye"></i>
+        Ver
+
+      </button>
+
     </div>
 
+    <!-- BUSCADOR -->
+
     <div class="buscador">
-      <input type="text" id="buscar" placeholder="Buscar...">
+
+      <input
+      type="text"
+      id="buscar"
+      placeholder="Buscar usuario...">
+
       <i class="fa-solid fa-magnifying-glass"></i>
+
     </div>
 
   </div>
 
-  <!-- INFO -->
-  <p class="info" id="infoUsuarios">Cargando...</p>
+  <!-- ===== INFO ===== -->
 
-  <!-- TABLA -->
+  <p
+  class="info"
+  id="infoUsuarios">
+
+    Cargando...
+
+  </p>
+
+  <!-- ===== TABLA ===== -->
+
   <div class="tabla-container">
+
     <table>
+
       <thead>
+
         <tr>
+
+          <th></th>
           <th>#</th>
           <th>Usuario</th>
           <th>Email</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+
         </tr>
+
       </thead>
 
       <tbody id="tablaBody">
-        <!-- datos dinámicos -->
+
+        <!-- DATOS DINÁMICOS -->
+
       </tbody>
+
     </table>
+
   </div>
 
+  <!-- ===== MODAL ELIMINAR ===== -->
+
+  <div
+  id="modalEliminar"
+  class="modal">
+
+    <div class="modal-content">
+
+      <h2>Eliminar usuario</h2>
+
+      <p>
+        ¿Seguro que deseas eliminar este usuario?
+      </p>
+
+      <div class="accionesModal">
+
+        <button
+        class="btn-cancelar"
+        onclick="cerrarModalEliminar()">
+
+          Cancelar
+
+        </button>
+
+        <button
+        id="confirmarEliminar">
+
+          Eliminar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== MODAL MENSAJES ===== -->
+
+  <div
+  id="modalMensaje"
+  class="modal">
+
+    <div class="modal-content">
+
+      <h2>Mensaje</h2>
+
+      <p id="textoModal">
+        Texto modal
+      </p>
+
+      <div class="accionesModal">
+
+        <button
+        class="btn"
+        onclick="cerrarModal()">
+
+          Aceptar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPT ===== -->
+
   <script src="../js/usuarios.js"></script>
+
 </body>
 </html>

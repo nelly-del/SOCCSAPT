@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Editar usuario</title>
+
+  <link
+  rel="stylesheet"href="../css/editar_usuarios.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+  <h1>Editar usuario</h1>
+
+  <div class="formulario">
+
+    <div class="grupo">
+
+      <label>Usuario</label>
+
+      <input
+      type="text"
+      id="usuario">
+
+    </div>
+
+    <div class="grupo">
+
+      <label>Correo</label>
+
+      <input
+      type="email"
+      id="correo">
+
+    </div>
+
+    <div class="grupo">
+
+      <label>Contraseña</label>
+
+      <input
+      type="text"
+      id="contrasena">
+
+    </div>
+
+    <div class="grupo">
+
+      <label>Rol</label>
+
+      <select id="rol">
+
+      </select>
+
+    </div>
+
+
+    <div class="acciones">
+
+      <button
+      class="btnCancelar"
+      onclick="window.location.href='usuarios.html'">
+
+      Cancelar
+
+      </button>
+
+      <button
+      class="btnGuardar"
+      id="guardarCambios">
+
+      Guardar cambios
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script src="../js/editar_usuario.js"></script>
+
+</body>
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+
+    <p id="textoModal"></p>
+
+    <button onclick="cerrarModal()">
+      Cerrar
+    </button>
+
+  </div>
+
+</div>
+</html>

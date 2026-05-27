@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Lista de Calles con Adeudos</title>
+
+    <!-- ARCHIVO CSS -->
+    <link rel="stylesheet" href="../css/calle_adeudos.css">
+
+    <!-- FUENTE POPPINS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- ICONOS FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER SUPERIOR
+========================= -->
+
+<header class="topbar">
+
+    <!-- TITULO -->
+    <h1>Listado de Calles con Adeudos</h1>
+
+    <!-- BOTON MENU -->
+    <button class="btn-menu" onclick="window.location.href='menu.html'">
+
+        <i class="fa-solid fa-house"></i> Menú
+
+    </button>
+
+</header>
+
+<!-- =========================
+     BARRA ROJA SUPERIOR
+========================= -->
+
+<div class="barra-botones">
+
+    <!-- BOTONES -->
+    <div>
+
+        <!-- BOTON REGRESAR -->
+    <button class="btn-regresar" onclick="history.back()">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </button>
+
+        <!-- BOTON GUARDAR -->
+        <button class="btn-guardar">
+
+            <i class="fa-solid fa-floppy-disk"></i> Guardar
+
+        </button>
+
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="buscador-container">
+
+        <!-- INPUT BUSCAR -->
+        <input type="text"
+               class="barra-busqueda"
+               placeholder="Buscar">
+
+        <!-- ICONO LUPA -->
+        <i class="fa-solid fa-magnifying-glass icono-lupa"></i>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     FILTROS
+========================= -->
+
+<div class="filtros">
+
+    <!-- FECHA DE CORTE -->
+    <div class="fecha-corte">
+
+        <label>Fecha de corte</label>
+
+        <input type="date">
+
+    </div>
+
+    <!-- SELECT CALLE -->
+    <div class="usuario-select">
+
+        <label>Calle:</label>
+
+        <select id="usuarioSelect">
+
+            <option value="">
+                Seleccione calle
+            </option>
+
+            <option value="">
+                Calle 2
+              </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     CONTENIDO PRINCIPAL
+========================= -->
+
+<div class="contenido">
+
+    <!-- =========================
+         TABLA
+    ========================= -->
+
+    <div class="tabla-container">
+
+        <!-- TOTAL DE REGISTROS -->
+        <p>
+
+            <strong>
+                Existen 0 registros en total
+            </strong>
+
+        </p>
+
+        <!-- TABLA -->
+        <table>
+
+            <!-- ENCABEZADOS -->
+            <thead>
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>Calle</th>
+
+                    <th>Número de contratos</th>
+
+                    <th>Importes</th>
+
+                </tr>
+
+            </thead>
+
+            <!-- CUERPO TABLA -->
+            <tbody>
+
+                <!-- DATOS VACIOS -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- =========================
+         GRAFICA
+    ========================= -->
+
+    <div class="grafica-container">
+
+        <!-- TITULO -->
+        <h3>Gráficas por calle</h3>
+
+        <!-- GRAFICA VACIA -->
+        <div class="grafica-vacia">
+
+            Sin datos
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
