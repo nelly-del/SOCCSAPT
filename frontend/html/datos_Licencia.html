@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos de Licencia</title>
+
+    <link rel="stylesheet" href="../css/datos_licencia.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+
+    <h1>Datos de Licencia</h1>
+
+    <button class="btn-menu"
+    onclick="window.location.href='menu.html'">
+
+        <i class="fa-solid fa-house"></i>
+        Menú
+
+    </button>
+
+</header>
+
+<!-- BARRA -->
+<div class="barra-botones">
+
+    <div>
+
+        <button class="btn-regresar">
+
+            <i class="fa-solid fa-arrow-left"></i>
+            Regresar
+
+        </button>
+
+        <button class="btn-guardar"
+        id="guardar">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+            Guardar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FORMULARIO -->
+
+<div class="contenedor-formulario">
+
+    <div class="campo">
+        <label>No. Contrato</label>
+        <input type="text" id="foliolicencia"
+         name="folio_licencia">
+    </div>
+
+    <div class="campo">
+        <label>RFC</label>
+        <input type="text" id="rfc"
+         name="rfc">
+    </div>
+
+    <div class="campo">
+        <label>Nombre razón social</label>
+        <input type="text" id="razon"
+        name="razon_social">
+    </div>
+
+    <div class="campo">
+        <label>Fecha inicio contrato</label>
+        <input type="date" id="fechaInicio"
+        name="fecha_inicio">
+    </div>
+
+    <div class="campo">
+        <label>Fecha termina contrato</label>
+        <input type="date" id="fechaFin"
+        name="fecha_fin">
+    </div>
+
+    <div class="campo">
+        <label>Estado</label>
+        <input type="text" id="estado"
+        name="estado">
+    </div>
+
+    <div class="campo">
+        <label>Municipio</label>
+        <input type="text" id="municipio"
+        name="municipio">
+    </div>
+
+    <div class="campo">
+        <label>Localidad</label>
+        <input type="text" id="localidad"
+        name="localidad">
+    </div>
+
+    <div class="campo">
+        <label>Colonia</label>
+        <input type="text" id="colonia"
+         name="colonia">
+    </div>
+
+    <div class="campo">
+        <label>Calle</label>
+        <input type="text" id="calle"
+        name="calle">
+    </div>
+
+    <div class="campo">
+        <label>Número exterior</label>
+        <input type="text" id="numExterior"
+        name="numero_exterior">
+    </div>
+
+    <div class="campo">
+        <label>Número interior</label>
+        <input type="text" id="numInterior"
+         name="numero_interior">
+    </div>
+
+    <div class="campo">
+        <label>Código postal</label>
+        <input type="text" id="cp"
+        name="cp">
+    </div>
+
+    <div class="campo">
+        <label>Referencia</label>
+        <input type="text" id="referencia"
+        name="referencia">
+    </div>
+
+    <div class="campo">
+        <label>Serie</label>
+        <input type="text" id="serie"
+        name="serie">
+    </div>
+
+    <div class="campo">
+        <label>Régimen fiscal</label>
+        <input type="text" id="regimen"
+        name="regimen_fiscal">
+    </div>
+
+    <div class="campo">
+        <label>Contraseña certificado</label>
+        <input type="password" id="passwordCert"
+        name="password_certificado">
+    </div>
+
+    <div class="campo">
+
+    <label for="archivoCer" class="btn-archivo">
+        Seleccionar archivo .cer
+    </label>
+
+    <input
+    type="file"
+    id="archivoCer"
+    name="archivoCer"
+    accept=".cer"
+    hidden>
+
+    <span id="nombreCer">
+        Ningún archivo seleccionado
+    </span>
+
+</div>
+
+<div class="campo">
+
+    <label for="archivoKey" class="btn-archivo">
+        Seleccionar archivo .key
+    </label>
+
+    <input
+    type="file"
+    id="archivoKey"
+    name="archivoKey"
+    accept=".key"
+    hidden>
+
+    <span id="nombreKey">
+        Ningún archivo seleccionado
+    </span>
+
+</div>
+
+</div>
+<!--MODAL-->
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <p id="mensajeModal"></p>
+
+        <button onclick="cerrarModal()">
+            Cerrar
+        </button>
+
+    </div>
+
+</div>
+
+<script src="../js/datos_licencia.js"></script>
+
+</body>
+</html>
