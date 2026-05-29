@@ -1,0 +1,158 @@
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f5f5f5;
+}
+
+/* HEADER TIPO CONTRATOS */
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+
+.header h2{
+  margin:0;
+}
+
+/* MENU */
+
+.menu{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.btn-menu{
+  background:#8B0000;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:5px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-menu:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+/* BARRA */
+
+.actions{
+  background:#8B0000;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.botones{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.actions button{
+  background:#c0392b;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:5px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.actions button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+/* FILTROS */
+
+.filters{
+  display:flex;
+  gap:20px;
+  padding:20px;
+  flex-wrap:wrap;
+}
+
+.filters div{
+  display:flex;
+  flex-direction:column;
+}
+
+.filters label{
+  margin-bottom:5px;
+  font-size:14px;
+}
+
+.filters input,
+.filters select{
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  outline:none;
+  min-width:180px;
+}
+
+/* TOTALES */
+
+.totales{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:0 20px 20px;
+}
+
+.totales div{
+  background:white;
+  border-radius:10px;
+  padding:15px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.totales p{
+  margin:0;
+  color:#555;
+}
+
+.totales h2{
+  margin-top:10px;
+  color:#8B0000;
+}
+
+/* TABLA */
+
+.tabla-container{
+  overflow-x:auto;
+  padding:0 20px 20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  font-size:13px;
+}
+
+th{
+  background:#e5e5e5;
+  padding:10px;
+  text-align:center;
+}
+
+td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:center;
+}
+
+tr:nth-child(even){
+  background:#f9f9f9;
+}
