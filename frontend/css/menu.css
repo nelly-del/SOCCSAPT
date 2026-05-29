@@ -1,396 +1,322 @@
-/* =========================
-   GENERAL
-========================= */
-
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background-color:#f5f5f5;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header{
-  background-color:#8B0000;
-  color:white;
-  padding:15px 30px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  font-size:20px;
-  font-weight:bold;
+header {
+  border-bottom: 40px solid #8B0000;
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  /* Logo izquierda y usuario derecha */
+  align-items: center;
 }
 
-.logo{
-  width:200px;
+.logo {
+  width: 250px;
 }
 
-/* =========================
-   PERFIL USUARIO
-========================= */
-
-.perfilUsuario{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  color:white;
-  font-size:16px;
-  font-weight:500;
-
-  padding:8px 15px;
-
-  border-radius:20px;
-
-  transition:background .3s ease;
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+  justify-items: center;
 }
 
-.perfilUsuario i{
-  font-size:22px;
-  color:white;
+.card {
+  width: 200px;
+  height: 200px;
+  border: 6px solid #8B0000;
+  border-radius: 20px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* =========================
-   CONTENEDOR PRINCIPAL
-========================= */
-
-.container{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-
-  gap:40px;
-
-  padding:50px;
-
-  justify-items:center;
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* =========================
-   TARJETAS
-========================= */
-
-.card{
-  width:200px;
-  height:200px;
-
-  border:6px solid #8B0000;
-  border-radius:20px;
-
-  background:white;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-
-  transition:all .3s ease;
-}
-
-.card:hover{
-  transform:scale(1.08);
-  box-shadow:0 10px 20px rgba(0,0,0,.2);
-}
-
-.card i{
-  font-size:80px;
-  color:#8B0000;
-
-  margin-bottom:10px;
-}
-
-.card p{
-  font-size:20px;
-  font-weight:500;
-  text-align:center;
-}
-
-/* =========================
-   MENUS
-========================= */
-
-ul{
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-
-a{
-  text-decoration:none;
-  color:black;
-
-  display:block;
-
-  text-align:center;
-
-  padding:30px;
-}
 
 .menu-principal{
-  position:relative;
+  position: relative;
 }
 
-.menu-principal ul{
-  display:flex;
-  background:#8B0000;
+
+/* Reset básico */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.menu-principal li{
-  position:relative;
+a {
+  text-align: center;
+  text-decoration: none; 
+  color: rgb(0, 0, 0);
+  display: block;
+  padding: 30px;
 }
 
-.menu-principal a:hover{
-  background:#555;
+/* Menú principal horizontal */
+.menu-principal ul {
+  display: flex;
+  background-color: #8B0000;
 }
 
-/* =========================
-   SUBMENU
-========================= */
+.menu-principal li {
+  position: relative; /* Necesario para posicionar el submenú */
+}
 
+.menu-principal a:hover {
+  background-color: #555;
+}
+
+/* SUBMENU */
 .submenu{
-  display:none;
+  display: none;
+  position: absolute;
 
-  position:absolute;
+  top: 0;
+  left: 100%; /* Hace que salga hacia la derecha */
 
-  top:0;
-  left:100%;
+  background-color: #8B0000;
+  min-width: 220px;
 
-  min-width:220px;
+  border-radius: 10px;
+  overflow: hidden;
 
-  background:#8B0000;
+  z-index: 100;
 
-  border-radius:10px;
-
-  overflow:hidden;
-
-  z-index:100;
-
-  flex-direction:column;
+  flex-direction: column;
 }
 
+/* Mostrar submenu */
 .dropdown:hover .submenu{
-  display:flex;
+  display: flex;
 }
 
+/* Opciones submenu */
 .submenu li{
-  width:100%;
+  width: 100%;
 }
 
 .submenu li a{
-  padding:15px;
-  color:white;
-
-  transition:.3s;
+  padding: 15px;
+  color: white;
+  transition: 0.3s;
 }
 
 .submenu li a:hover{
-  background:#a00000;
+  background-color: #a00000;
 }
 
 /* =========================
-   BOTON SALIR
+   PERFIL DE USUARIO
 ========================= */
 
-.salir{
-  position:fixed;
+.perfilUsuario{
 
-  bottom:25px;
-  right:25px;
+  display: flex;
+  /* Coloca icono y texto en horizontal */
 
-  padding:12px 25px;
+  align-items: center;
+  /* Centra verticalmente */
 
-  border:2px solid #8B0000;
-  border-radius:25px;
+  gap: 10px;
+  /* Espacio entre icono y texto */
 
-  background:white;
+  font-size: 16px;
 
-  cursor:pointer;
+  font-weight: 500;
 
-  font-size:16px;
-
-  transition:all .3s ease;
+  color: #8B0000;
+  /* Color del texto */
 }
 
-.salir:hover{
-  background:#8B0000;
-  color:white;
+/* ICONO USUARIO */
 
-  transform:scale(1.1);
+.perfilUsuario i{
 
-  box-shadow:0 5px 15px rgba(139,0,0,.3);
+  font-size: 22px;
+
+  color: #8B0000;
 }
 
-/* =========================
-   MODAL OVERLAY
-========================= */
 
-.modal-overlay,
-.modal{
-  display:none;
 
-  position:fixed;
 
-  top:0;
-  left:0;
 
-  width:100%;
-  height:100%;
 
-  background:rgba(0,0,0,.5);
 
-  justify-content:center;
-  align-items:center;
-
-  z-index:2000;
-
-  backdrop-filter:blur(4px);
+/* MENU DESPLEGABLE */
+/* CONTENEDOR //
+.reporte-contenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* =========================
-   MODAL CONTENT
-========================= */
-
-.modal-content{
-  background:white;
-
-  width:400px;
-  max-width:90%;
-
-  padding:30px;
-
-  border-radius:15px;
-
-  text-align:center;
-
-  box-shadow:0 10px 25px rgba(0,0,0,.3);
-
-  animation:aparecer .3s ease;
+/* SUBMENU 
+.submenu-reportes{
+  display: none;
+  flex-direction: column;
+  width: 200px;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
 
-.modal-content h2{
-  margin-top:0;
-  margin-bottom:20px;
-
-  color:#8B0000;
+/* MOSTRAR MENU 
+.submenu-reportes.mostrar{
+  display: flex;
 }
 
-.modal-content p{
-  margin:12px 0;
-  font-size:15px;
+/* BOTONES 
+.submenu-reportes button{
+  border: none;
+  background: white;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.modal-content button{
-  border:none;
-
-  padding:10px 18px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-
-  margin-top:15px;
-
-  transition:.3s;
+.submenu-reportes button:hover{
+  background-color: #f0f0f0;
 }
 
-/* =========================
-   ICONO MODAL
-========================= */
 
-.modal-icon{
-  font-size:50px;
-  color:#8B0000;
+*/
 
-  margin-bottom:15px;
+
+
+
+
+.card i {
+  font-size: 80px;   
+  color: #8B0000;
+  margin-bottom: 10px;
 }
 
-/* =========================
-   BOTONES MODAL
-========================= */
-
-.modal-buttons{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-
-  margin-top:20px;
+.card p {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
 }
 
-.btn-cancelar{
-  background:#eee;
-  border:none;
-
-  padding:10px 20px;
-
-  border-radius:5px;
-
-  cursor:pointer;
+.salir {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 12px 25px;
+  border: 2px solid #8B0000;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
-.btn-confirmar{
-  background:#8B0000;
-  color:white;
-
-  border:none;
-
-  padding:10px 20px;
-
-  border-radius:5px;
-
-  cursor:pointer;
+.salir:hover {
+  background-color: #8B0000;
+  color: white;
 }
 
-.btn-confirmar:hover{
-  background:#a00000;
+.salir {
+  transition: all 0.3s ease; 
 }
 
-/* =========================
-   BOTON CERRAR SESION
-========================= */
-
-#cerrarSesion{
-  background:#c0392b;
-  color:white;
-
-  margin-right:10px;
+.salir:hover {
+  background-color: #8B0000;
+  color: white;
+  transform: scale(1.1); 
+  box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
 }
 
-#cerrarSesion:hover{
-  background:#a93226;
+.modal-overlay {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
 }
 
-/* =========================
-   BOTON CERRAR
-========================= */
-
-.modal-content button:last-child{
-  background:#7f8c8d;
-  color:white;
+/* Caja del mensaje */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: aparecer 0.3s ease;
 }
 
-.modal-content button:last-child:hover{
-  background:#626567;
+@keyframes aparecer {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* =========================
-   ANIMACION
-========================= */
-
-@keyframes aparecer{
-
-  from{
-    opacity:0;
-    transform:scale(.9);
-  }
-
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-
+/* El fondo oscuro transparente */
+.modal-overlay {
+  display: none; /* Se activa con JS */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* Desenfoque moderno */
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
 }
+/* Icono de salida */
+.modal-icon {
+  font-size: 50px;
+  color: #8B0000;
+  margin-bottom: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  background: #eee;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  background: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-confirmar:hover { background: #a00000; }

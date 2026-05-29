@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Recaudación</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/recaudacion.css">
+
+  <!-- FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- ICONOS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="topbar">
+
+    <h1>Recaudación</h1>
+
+    <button class="menu-btn" id="menu">
+      <i class="fa-solid fa-house"></i>
+      Menú
+    </button>
+
+  </header>
+
+  <!-- ================= BOTONES ================= -->
+  <section class="actions">
+
+    <button id="buscar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      Buscar
+    </button>
+
+    <button id="imprimir">
+      <i class="fa-solid fa-print"></i>
+      Imprimir
+    </button>
+
+    <button id="limpiar">
+      <i class="fa-solid fa-eraser"></i>
+      Limpiar
+    </button>
+
+    <button id="formatoMensual">
+      <i class="fa-solid fa-calendar"></i>
+      Formato mensual
+    </button>
+
+  </section>
+
+  <!-- ================= FILTROS ================= -->
+  <section class="filters">
+
+    <div>
+      <label>Fecha inicio</label>
+
+      <input type="date" id="fechaInicio">
+    </div>
+
+    <div>
+      <label>Fecha final</label>
+
+      <input type="date" id="fechaFinal">
+    </div>
+
+    <div>
+      <label>Cajero</label>
+
+      <select id="cajero">
+
+        <option value="">
+          Seleccione
+        </option>
+
+        <option value="juan">
+          Juan
+        </option>
+
+        <option value="ana">
+          Ana
+        </option>
+
+      </select>
+
+    </div>
+
+  </section>
+
+  <!-- ================= TOTALES ================= -->
+  <section class="totales">
+
+    <div>
+      <p>Subtotal</p>
+
+      <h2 id="subtotal">
+        $0.00
+      </h2>
+    </div>
+
+    <div>
+      <p>Servicio de agua</p>
+
+      <h2 id="agua">
+        $0.00
+      </h2>
+    </div>
+
+    <div>
+      <p>Total recargos</p>
+
+      <h2 id="recargos">
+        $0.00
+      </h2>
+    </div>
+
+    <div>
+      <p>Total descuentos</p>
+
+      <h2 id="descuentos">
+        $0.00
+      </h2>
+    </div>
+
+    <div>
+      <p>Recaudación neta</p>
+
+      <h2 id="neto">
+        $0.00
+      </h2>
+    </div>
+
+  </section>
+
+  <!-- ================= TABLA ================= -->
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Folio</th>
+          <th>Código</th>
+          <th>Contribuyente</th>
+          <th>Contrato</th>
+          <th>Periodo</th>
+          <th>Meses</th>
+          <th>Tarifa</th>
+          <th>Recargos</th>
+          <th>Total recargos</th>
+          <th>Descuentos</th>
+          <th>Total descuentos</th>
+          <th>Servicio agua</th>
+          <th>Importe total</th>
+          <th>Recaudación neta</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="tabla-body">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- ================= JS ================= -->
+  <script src="../js/recaudacion.js"></script>
+
+</body>
+
+</html>
