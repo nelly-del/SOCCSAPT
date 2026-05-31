@@ -808,7 +808,7 @@ app.post(
   }
 
 );
-//////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 // ADEUDOS
 
 app.post(
@@ -833,6 +833,7 @@ app.post(
       INSERT INTO adeudos(
 
         id_contrato,
+        servicio,
         importes,
         meses_morosos,
         fecha_adeudo,
@@ -842,6 +843,7 @@ app.post(
 
       VALUES(
 
+        ?,
         ?,
         ?,
         ?,
@@ -859,6 +861,7 @@ app.post(
       [
 
         id_contrato,
+        servicio,
         importes,
         meses_morosos
 
@@ -901,21 +904,34 @@ app.get(
 
     const sql = `
 
-      SELECT *
+      SELECT
 
-      FROM adeudos
+        a.*,
+        c.codigo_contribuyente,
+        ct.nombre
 
-      ORDER BY id_adeudo DESC
+      FROM adeudos a
+
+      LEFT JOIN contratos c
+      ON a.id_contrato =
+      c.id_contrato
+
+      LEFT JOIN contribuyentes ct
+      ON c.codigo_contribuyente =
+      ct.codigo_contribuyente
+
+      ORDER BY a.id_adeudo DESC
 
     `;
 
     conexion.query(
 
       sql,
-
       (error,result)=>{
 
         if(error){
+
+          console.log(error);
 
           return res.status(500).json({
 
@@ -991,70 +1007,66 @@ app.get(
     }
 
 });
-//////////////Crear adeudo 
-app.post(
-  "/adeudos",
-  async(req,res)=>{
+app.get("/descuentos",(req,res)=>{
 
-    try{
+  conexion.query(
 
-      const {
+    "SELECT * FROM descuentos",
 
-        id_contrato,
-        servicio,
-        mes_inicio,
-        mes_fin,
-        meses_morosos,
-        importes,
-        observaciones
+    (error,result)=>{
 
-      } = req.body;
+      if(error){
 
-      await conexion.promise().query(
+        return res.status(500).json({
+          mensaje:"Error"
+        });
 
-        `
-        INSERT INTO adeudos(
+      }
 
-          id_contrato,
-          importes,
-          meses_morosos,
-          fecha_adeudo,
-          estado
-
-        )
-
-        VALUES(?,?,?,?,?)
-        `,
-        [
-
-          id_contrato,
-          importes,
-          meses_morosos,
-          new Date(),
-          0
-
-        ]
-
-      );
-
-      res.json({
-
-        mensaje:
-        "Recibo generado correctamente"
-
-      });
-
-    }catch(error){
-
-      console.log(error);
-
-      res.status(500).json({
-
-        mensaje:
-        "Error al generar recibo"
-
-      });
+      res.json(result);
 
     }
 
+  );
+
+});
+//DESCUENTOS/////////////////////////////////////////////////////
+
+app.post("/adeudos", async (req, res) => {
+  try {
+    const {
+      id_contrato,
+      servicio,
+      mes_inicio,
+      mes_fin,
+      meses_morosos,
+      importes, // El frontend ya manda la cifra neta calculada con descuento
+      observaciones
+    } = req.body;
+
+    const sql = `
+      INSERT INTO adeudos (
+        id_contrato,
+        servicio,
+        importes,
+        meses_morosos,
+        fecha_adeudo,
+        estado
+      ) VALUES (?, ?, ?, ?, NOW(), 0)
+    `;
+
+    // Ejecutamos usando tu sistema de promesas nativo de mysql2
+    await conexion.promise().query(sql, [
+      id_contrato,
+      servicio,
+      importes,
+      meses_morosos
+    ]);
+
+    res.json({ mensaje: "Adeudo generado correctamente" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ mensaje: "Error al generar el adeudo" });
+  }
 });
