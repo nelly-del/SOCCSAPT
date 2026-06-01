@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recaudación acumulada</title>
+
+  <link rel="stylesheet" href="../css/recaudacionAcomulda.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <h2>Recaudación acumulada</h2>
+
+  <div class="menu">
+
+    <button class="btn-menu" id="menu">
+
+      <i class="fa-solid fa-house"></i>
+
+      Menú
+
+    </button>
+
+  </div>
+
+</header>
+
+<!-- BARRA -->
+<section class="actions">
+
+  <div class="botones">
+
+    <button id="buscarBtn">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      Buscar
+
+    </button>
+
+    <button id="descargarBtn">
+
+      <i class="fa-solid fa-download"></i>
+
+      Descargar
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- FILTROS -->
+<section class="filters">
+
+  <div>
+
+    <label>Fecha inicio</label>
+
+    <input type="date" id="fechaInicio">
+
+  </div>
+
+  <div>
+
+    <label>Fecha final</label>
+
+    <input type="date" id="fechaFinal">
+
+  </div>
+
+  <div>
+
+    <label>Cajero</label>
+
+    <select id="cajero">
+
+      <option>Seleccione</option>
+
+      <option>Cajero 1</option>
+
+      <option>Cajero 2</option>
+
+    </select>
+
+  </div>
+
+</section>
+
+<!-- TOTALES -->
+<section class="totales">
+
+  <div>
+
+    <p>Servicio de agua</p>
+
+    <h2 id="agua">$0.00</h2>
+
+  </div>
+
+  <div>
+
+    <p>Total recargos</p>
+
+    <h2 id="recargos">$0.00</h2>
+
+  </div>
+
+  <div>
+
+    <p>Total descuentos</p>
+
+    <h2 id="descuentos">$0.00</h2>
+
+  </div>
+
+  <div>
+
+    <p>Recaudación neta</p>
+
+    <h2 id="neto">$0.00</h2>
+
+  </div>
+
+</section>
+
+<!-- TABLA -->
+<div class="tabla-container">
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Folio</th>
+        <th>Código</th>
+        <th>Contribuyente</th>
+        <th>Contrato</th>
+        <th>Periodo</th>
+        <th>Meses</th>
+        <th>Tarifa</th>
+        <th>Recargos</th>
+        <th>Total recargos</th>
+        <th>Descuentos</th>
+        <th>Total descuentos</th>
+        <th>Servicio agua</th>
+        <th>Importe total</th>
+        <th>Recaudación neta</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody id="tabla-body"></tbody>
+
+  </table>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script src="../js/recaudacionAcomulada.js"></script>
+
+</body>
+</html>

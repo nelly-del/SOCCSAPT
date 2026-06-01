@@ -1,0 +1,204 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* ================= HEADER ================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: white;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+/* ================= BOTONES ================= */
+
+.menu-btn,
+.actions button {
+
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.actions {
+  background-color: #8B0000;
+  padding: 10px 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.menu-btn:hover,
+.actions button:hover {
+
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  filter: brightness(1.1);
+}
+
+.menu-btn:active,
+.actions button:active {
+
+  transform: translateY(0);
+}
+
+/* ================= FILTROS ================= */
+
+.filters {
+
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.filters div {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.filters label {
+
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.filters input,
+.filters select {
+
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+  outline: none;
+  font-size: 14px;
+}
+
+.filters input:focus,
+.filters select:focus {
+
+  border-color: #8B0000;
+}
+
+/* ================= TOTALES ================= */
+
+.totales {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 0 20px 20px;
+}
+
+.totales div {
+
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.totales p {
+
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.totales h2 {
+
+  margin-top: 10px;
+  color: #8B0000;
+  font-size: 22px;
+}
+
+/* ================= TABLA ================= */
+
+.table-container {
+
+  overflow-x: auto;
+  padding: 0 20px 20px;
+}
+
+table {
+
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  min-width: 1200px;
+}
+
+th {
+
+  background-color: #e6e6e6;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+
+td {
+
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 13px;
+}
+
+tr:nth-child(even) {
+
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+
+  background-color: #f1f1f1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .topbar {
+
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .actions {
+
+    justify-content: center;
+  }
+
+  .filters {
+
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters input,
+  .filters select {
+
+    width: 100%;
+  }
+}

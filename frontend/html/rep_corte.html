@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corte de pagos</title>
+
+  <link rel="stylesheet" href="../css/rep_corte.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <h2>Corte de pagos</h2>
+
+  <div class="menu">
+
+    <button class="btn-menu" id="menu">
+
+      <i class="fa-solid fa-house"></i>
+
+      Menú
+
+    </button>
+
+  </div>
+
+</header>
+
+<!-- BARRA -->
+<section class="actions">
+
+  <div class="botones">
+
+    <button id="regresar">
+
+      <i class="fa-solid fa-arrow-left"></i>
+
+      Regresar
+
+    </button>
+
+    <button id="buscarBtn">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      Buscar
+
+    </button>
+
+    <button id="imprimirBtn">
+
+      <i class="fa-solid fa-print"></i>
+
+      Imprimir
+
+    </button>
+
+    <button id="imprimirCorteBtn">
+
+      <i class="fa-solid fa-file-invoice"></i>
+
+      Imprimir corte
+
+    </button>
+
+    <button id="limpiarBtn">
+
+      <i class="fa-solid fa-eraser"></i>
+
+      Limpiar
+
+    </button>
+
+    <button id="formatoBtn">
+
+      <i class="fa-solid fa-calendar"></i>
+
+      Formato mensual
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- FILTROS -->
+<section class="filters">
+
+  <div>
+
+    <label>Fecha inicio</label>
+
+    <input type="date" id="fechaInicio">
+
+  </div>
+
+  <div>
+
+    <label>Fecha final</label>
+
+    <input type="date" id="fechaFinal">
+
+  </div>
+
+  <div>
+
+    <label>Cajero</label>
+
+    <select id="cajero">
+
+      <option>Seleccione</option>
+
+      <option>Cajero 1</option>
+
+      <option>Cajero 2</option>
+
+    </select>
+
+  </div>
+
+</section>
+
+<!-- TOTALES -->
+<section class="totales">
+
+  <div>
+
+    <p>Total recaudado</p>
+
+    <h2 id="totalRecaudado">$0.00</h2>
+
+  </div>
+
+  <div>
+
+    <p>Total recargos</p>
+
+    <h2 id="totalRecargos">$0.00</h2>
+
+  </div>
+
+  <div>
+
+    <p>Total descuentos</p>
+
+    <h2 id="totalDescuentos">$0.00</h2>
+
+  </div>
+
+</section>
+
+<!-- TABLA -->
+<h3 class="titulo-tabla">
+
+  Desgloses de pago por servicio
+
+</h3>
+
+<div class="tabla-container">
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Código</th>
+        <th>Descripción</th>
+        <th>Número de pagos</th>
+        <th>Recargos</th>
+        <th>Descuentos</th>
+        <th>Importes</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody id="tabla-body"></tbody>
+
+  </table>
+
+</div>
+
+<script src="../js/rep_corte.js"></script>
+
+</body>
+</html>

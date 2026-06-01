@@ -1055,7 +1055,6 @@ app.post("/adeudos", async (req, res) => {
       ) VALUES (?, ?, ?, ?, NOW(), 0)
     `;
 
-    // Ejecutamos usando tu sistema de promesas nativo de mysql2
     await conexion.promise().query(sql, [
       id_contrato,
       servicio,
