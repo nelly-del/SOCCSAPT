@@ -10,17 +10,22 @@
 <body>
 
   <header>
-  <img src="../../logos/logo.jpeg" class="logo" alt="Logo">
-  
+
+  <!-- LOGO -->
+  <img src="../../logos/logo.jpeg" class="logo">
+
+  <!-- PERFIL USUARIO -->
   <div class="perfilUsuario">
+
     <i class="fa-solid fa-user"></i>
-    <span id="nombreUsuario"></span>
 
   </div>
+
 </header>
 
-  <main class="container">
 
+
+  <main class="container">
 
  <!-- Contrato -->
     <nav class="card">
@@ -34,7 +39,7 @@
       <!-- Submenú desplegable -->
       <ul class="submenu">
         <li><a href="contratos.html">Listado de contratos</a></li>
-        <li><a href="crearcontrato.html">Nuevo contrato</a></li>
+        <li><a href="recaudación.html">Nuevo contrato</a></li>
       </ul>
 
     </li>
@@ -74,7 +79,7 @@
 
       <!-- Submenú desplegable -->
       <ul class="submenu">
-        <li><a href="Pagos.html">Pagos</a></li>
+        <li><a href="pago_agua.html">Pagos</a></li>
         <li><a href="Pagar_servicio.html">Pagar servicio de agua</a></li>
         <li><a href="Historial_de_pagos.html">Historial de pagos</a></li>
        </ul>
@@ -96,11 +101,11 @@
 
       <!-- Submenú desplegable -->
       <ul class="submenu">
-        <li><a href="corte.html">Corte</a></li>
-        <li><a href="recaudación.html">Recaudación</a></li>
-        <li><a href="recaudacionacumulada.html">Recaudacion Acumulada</a></li>
-        <li><a href="deudores.html">Deudores</a></li>
-        <li><a href="reporteporcalles.html">Reporte por Calles</a></li>
+        <li><a href="rep_corte.html">Corte</a></li>
+        <li><a href="recaudacion.html">Recaudación</a></li>
+        <li><a href="recaudacionAcomulada.html">Recaudacion Acumulada</a></li>
+        <li><a href="adeudos.html">Deudores</a></li>
+        <li><a href="calle_adeudo.html">Reporte por Calles</a></li>
       </ul>
 
     </li>
@@ -130,16 +135,14 @@
   </ul>
 </nav>
 
-
-
   </main>
 
   <button class="salir" onclick="salir()">Salir</button>
 
 
-<script src="../js/menu.js"></script>
-  
 
+  
+</body>
 
 <!-- Modal de Salida -->
 <div id="modalSalir" class="modal-overlay">
@@ -155,5 +158,4 @@
     </div>
   </div>
 </div>
-</body>
 </html>
