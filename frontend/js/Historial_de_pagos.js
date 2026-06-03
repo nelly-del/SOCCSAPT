@@ -49,9 +49,7 @@ mostrarPagos(pagos);
 botonBuscar.addEventListener("click", function(){
 
     const fecha = busquedaFecha.value;
-
     const nombre = busquedaNombre.value;
-
 
     const resultados = pagos.filter(function(pago){
 

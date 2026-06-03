@@ -80,6 +80,7 @@ document.getElementById('contrato').onclick = () => window.location.href = "cont
 document.getElementById('pago').onclick = () => window.location.href = "pagos.html";
 document.getElementById('reporte').onclick = () => window.location.href = "reportes.html";
 document.getElementById('agregar').onclick = () => window.location.href = "registrocontribuyentes.html";
+document.getElementById('cambiar').onclick = () => window.location.href = "Cambio_de_contribuyente.html";
 
 //GENERAR EXCEL
 document.getElementById('descargar').onclick = generarExcel;

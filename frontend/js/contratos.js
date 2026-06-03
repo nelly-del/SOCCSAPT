@@ -223,6 +223,12 @@ document.getElementById("agregarcontrato").onclick = ()=>{
 
 };
 
+document.getElementById("editar").onclick = ()=>{
+
+  window.location.href = "Modificar_contrato.html";
+
+};
+
 
 // =============================
 // EXCEL
