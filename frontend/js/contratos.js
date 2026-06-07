@@ -84,6 +84,12 @@ document.getElementById("agregarcontrato").onclick = () => { window.location.hre
 document.getElementById("editar").onclick = () => { window.location.href = "modificar_contrato.html"; };
 document.getElementById("pago").onclick = () => { window.location.href = "recibos.html"; };
 
+document.getElementById("editar").onclick = ()=>{
+
+  window.location.href = "Modificar_contrato.html";
+
+};
+
 
 // =============================
 // EXCEL
