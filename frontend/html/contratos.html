@@ -34,8 +34,8 @@
       <i class="fa-solid fa-coins"></i> Pagos
     </button>
 
-    <button class="btn-menu" id="reportes">
-      <i class="fa-solid fa-chart-column"></i> Reportes
+    <button class="btn-menu" id="recargos">
+      <i class="fa-solid fa-chart-column"></i> Recaudacion
     </button>
 
   </div>
@@ -63,7 +63,7 @@
       <i class="fa-solid fa-download"></i> Descargar
     </button>
 
-    <button class="btn">
+    <button class="btn" id="pago">
       <i class="fa-solid fa-hand-holding-droplet"></i>
       Pagar servicio de agua
     </button>
@@ -100,7 +100,6 @@
   <th>Último pago</th>
   <th>Pago inicio</th>
   <th>Creacion del contrato</th>
-  <th>Contrato anterior</th>
   <th>Unidad</th>
   <th>Estatus</th>
   <th>Bomba</th>
@@ -121,9 +120,10 @@
 <div class="paginacion"></div>
 
 
-<script src="../js/contratos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
 </body>
+
 <!-- MODAL CANCELAR CONTRATO -->
 <div id="modalCancelar" class="modal">
 
@@ -199,4 +199,8 @@
   </div>
 
 </div>
+
+<script src="../js/contratos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
 </html>

@@ -1,0 +1,243 @@
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f5f5f5;
+}
+
+/* HEADER */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+
+.topbar h1{
+  margin:0;
+  color:#0f0000;
+}
+
+.menu-superior{
+  display:flex;
+  gap:8px;
+}
+
+.menu-superior button{
+  background:#8B0000;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:5px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.menu-superior button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 4px 8px rgba(0,0,0,.2);
+}
+
+/* BARRA ROJA */
+.barra-acciones{
+  background:#8B0000;
+  padding:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.barra-acciones button{
+  background:#c0392b;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:5px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.barra-acciones button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 4px 8px rgba(0,0,0,.2);
+}
+.filtros{
+    padding:20px;
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:15px;
+}
+
+.campo{
+    display:flex;
+    flex-direction:column;
+}
+
+.campo input,
+.campo select{
+    padding:8px;
+}
+
+.checks{
+    padding:0 20px 20px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.info-registros{
+    padding:0 20px;
+    margin-bottom:10px;
+}
+
+.paginacion{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+
+    padding:10px 20px;
+}
+
+.paginacion button{
+    padding:5px 10px;
+}
+
+.contenedor-tabla{
+  padding:0 20px 20px;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+
+th{
+  background:#e6e6e6;
+  padding:10px;
+  text-align:left;
+  font-size:14px;
+}
+
+td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  font-size:13px;
+}
+
+tr:nth-child(even){
+  background:#f9f9f9;
+}
+.badge-estatus, .badge-timbrado {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.badge-estatus:hover, .badge-timbrado:hover {
+    transform: scale(1.05); /* Sutil efecto al pasar el mouse */
+}
+
+/* Estatus: Vigente (Verde fuerte) / No Vigente (Amarillo) */
+.badge-vigente { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.badge-novigente { background-color: #fff2cc; color: #7f6000; border: 1px solid #ffd966; }
+
+/* Timbrado: Sí (Verde brillante) / No (Rojo) */
+.badge-timbrado-si { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.badge-timbrado-no { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* Contenedor Fondo del Modal */
+.modal-personalizado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Tarjeta del Modal */
+.modal-contenido-personalizado {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 380px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-contenido-personalizado h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.modal-contenido-personalizado p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+/* Contenedor de Botones */
+.modal-botones-pagos {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Botones del Modal */
+.btn-pago-cancelar, .btn-pago-aceptar {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-pago-cancelar {
+    background-color: #eaedf1;
+    color: #5c6873;
+}
+
+.btn-pago-cancelar:hover {
+    background-color: #dfe3e9;
+}
+
+.btn-pago-aceptar {
+    background-color: #20a8d8;
+    color: #ffffff;
+}
+
+.btn-pago-aceptar:hover {
+    background-color: #1b8eb7;
+}
+
+/* Clases de tus Insignias (Badges) */
+.badge-estatus, .badge-timbrado {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    user-select: none;
+}
+.badge-vigente { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.badge-novigente { background-color: #f8d7da; color: #74202a; border: 1px solid #f5c2c7; }
+.badge-timbrado-si { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.badge-timbrado-no { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }

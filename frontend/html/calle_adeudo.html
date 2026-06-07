@@ -1,188 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <title>Lista de Calles con Adeudos</title>
-
-    <!-- ARCHIVO CSS -->
     <link rel="stylesheet" href="../css/calle_adeudo.css">
-
-    <!-- FUENTE POPPINS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
-    <!-- ICONOS FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
 
-<!-- =========================
-     HEADER SUPERIOR
-========================= -->
-
 <header class="topbar">
-
-    <!-- TITULO -->
     <h1>Listado de Calles con Adeudos</h1>
-
-    <!-- BOTON MENU -->
     <button class="btn-menu" onclick="window.location.href='menu.html'">
-
         <i class="fa-solid fa-house"></i> Menú
-
     </button>
-
 </header>
 
-<!-- =========================
-     BARRA ROJA SUPERIOR
-========================= -->
-
 <div class="barra-botones">
-
-    <!-- BOTONES -->
     <div>
-
-        <!-- BOTON REGRESAR -->
-    <button class="btn-regresar" onclick="history.back()">
-      <i class="fa-solid fa-arrow-left"></i> Regresar
-    </button>
-
-        <!-- BOTON GUARDAR -->
-        <button class="btn-guardar">
-
-            <i class="fa-solid fa-floppy-disk"></i> Guardar
-
+        <button class="btn-regresar" onclick="window.location.href='menu.html'">
+            <i class="fa-solid fa-arrow-left"></i> Regresar
         </button>
-
+        <button class="btn-guardar" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Imprimir
+        </button>
     </div>
 
-    <!-- BUSCADOR -->
     <div class="buscador-container">
-
-        <!-- INPUT BUSCAR -->
-        <input type="text"
-               class="barra-busqueda"
-               placeholder="Buscar">
-
-        <!-- ICONO LUPA -->
+        <input type="text" class="barra-busqueda" placeholder="Buscar">
         <i class="fa-solid fa-magnifying-glass icono-lupa"></i>
-
     </div>
-
 </div>
 
-<!-- =========================
-     FILTROS
-========================= -->
-
-<div class="filtros">
-
-    <!-- FECHA DE CORTE -->
-    <div class="fecha-corte">
-
-        <label>Fecha de corte</label>
-
-        <input type="date">
-
-    </div>
-
-    <!-- SELECT CALLE -->
-    <div class="usuario-select">
-
-        <label>Calle:</label>
-
-        <select id="usuarioSelect">
-
-            <option value="">
-                Seleccione calle
-            </option>
-
-            <option value="">
-                Calle 2
-              </option>
-
-        </select>
-
-    </div>
-
-</div>
-
-<!-- =========================
-     CONTENIDO PRINCIPAL
-========================= -->
-
-<div class="contenido">
-
-    <!-- =========================
-         TABLA
-    ========================= -->
-
-    <div class="tabla-container">
-
-        <!-- TOTAL DE REGISTROS -->
-        <p>
-
-            <strong>
-                Existen 0 registros en total
-            </strong>
-
-        </p>
-
-        <!-- TABLA -->
-        <table>
-
-            <!-- ENCABEZADOS -->
-            <thead>
-
-                <tr>
-
-                    <th>No</th>
-
-                    <th>Calle</th>
-
-                    <th>Número de contratos</th>
-
-                    <th>Importes</th>
-
-                </tr>
-
-            </thead>
-
-            <!-- CUERPO TABLA -->
-            <tbody>
-
-                <!-- DATOS VACIOS -->
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <!-- =========================
-         GRAFICA
-    ========================= -->
-
-    <div class="grafica-container">
-
-        <!-- TITULO -->
-        <h3>Gráficas por calle</h3>
-
-        <!-- GRAFICA VACIA -->
-        <div class="grafica-vacia">
-
-            Sin datos
-
+<div id="area-imprimir">
+    <div class="filtros">
+        <div class="fecha-corte">
+            <label>Fecha de corte</label>
+            <input type="date" id="fechaCorte">
         </div>
 
+        <div class="usuario-select">
+            <label>Secciones:</label>
+            <select id="usuarioSelect">
+                <option value="">Seleccione calle</option>
+                <option value="Primera Sección: Actipac INFONAVIT">Primera Sección: Actipac INFONAVIT</option>
+                <option value="Segunda Sección: Teotlalpan Tetla">Segunda Sección: Teotlalpan Tetla (cabecera municipal)</option>
+                <option value="Tercera Sección: Ocotitla">Tercera Sección: Ocotitla</option>
+                <option value="Cuarta Sección: Chiautzingo">Cuarta Sección: Chiautzingo</option>
+                <option value="Quinta Sección: Colonia Agrícola De Dolores">Quinta Sección: Colonia Agrícola De Dolores</option>
+                <option value="Capulac">Capulac</option>
+                <option value="José María Morelos y Pavón">José María Morelos y Pavón</option>
+                <option value="Plan de Ayala">Plan de Ayala</option>
+                <option value="San Bartolomé Matlalohcan">San Bartolomé Matlalohcan</option>
+                <option value="San Francisco Atexcatzingo">San Francisco Atexcatzingo</option>
+                <option value="San Isidro Piedras Negras">San Isidro Piedras Negras</option>
+                <option value="Santa Fe La Troje">Santa Fe La Troje</option>
+                <option value="Ciudad Industrial Xicohténcatl">Ciudad Industrial Xicohténcatl</option>
+            </select>
+        </div>
     </div>
 
+    <div class="contenido">
+        <div class="tabla-container">
+            <p><strong>Existen 0 registros en total</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Calle</th>
+                        <th>Número de contratos</th>
+                        <th>Importes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="grafica-container">
+            <h3>Gráficas por calle</h3>
+            <div class="grafica-vacia">Sin datos</div>
+        </div>
+    </div>
 </div>
 
+<script src="../js/calle_adeudo.js"></script>
 </body>
 </html>

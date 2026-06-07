@@ -29,9 +29,6 @@ async function cargarDatos(pagina = 1) {
         <td>${c.colonia}</td>
         <td>${c.calle}</td>
         <td>${c.cp}</td>
-        <td class="${c.estatus == 1 ? 'activo' : 'inactivo'}"> 
-          ${c.estatus == 1 ? 'Vigente' : 'Baja'}
-        </td>
        <td 
   class="${c.estatus == 1 ? 'activo' : 'inactivo'}"
   onclick="cambiarEstatus('${c.codigo_contribuyente}', ${c.estatus})"

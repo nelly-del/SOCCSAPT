@@ -13,6 +13,8 @@
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -21,7 +23,7 @@
 
 <header class="topbar">
 
-    <h1>Recibos / Adeudos</h1>
+    <h1>Recibos</h1>
 
     <button class="btn-menu"
     onclick="window.location.href='menu.html'">
@@ -111,6 +113,21 @@
         </select>
 
     </div>
+ 
+<div class="campo">
+
+  <label>Descuento</label>
+
+  <select id="descuento">
+
+   <option value="">Sin descuento</option>
+<option value="1" data-valor="50">INAPAM (50%)</option>
+<option value="2" data-valor="50">DISCAPACIDAD (50%)</option>
+<option value="3" data-valor="20">PRINCIPIOS (20%)</option>
+
+  </select>
+
+</div>
 
     <div class="campo">
 
@@ -143,8 +160,12 @@
 
         <label>Importe</label>
 
-        <input type="number"
-        id="importe">
+        <input
+  type="number"
+  id="importe"
+  placeholder="Ingrese el importe"
+  step="any"
+>
 
     </div>
 
@@ -202,7 +223,7 @@
     </div>
 
 </div>
-
+ 
 <script src="../js/recibos.js"></script>
 
 </body>
