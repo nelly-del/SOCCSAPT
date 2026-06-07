@@ -82,7 +82,7 @@ document.getElementById("guardar").addEventListener("click", async () => {
 
     if (res.ok && respuesta.includes("correctamente")) {
       // Opcional: Limpiar el formulario o redirigir tras guardar con éxito
-      setTimeout(() => { window.location.href = "listado_contratos.html"; }, 1500);
+      setTimeout(() => { window.location.href = "contratos.html"; }, 1500);
     }
 
   } catch (error) {

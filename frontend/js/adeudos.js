@@ -1,192 +1,135 @@
-// ==================== DATOS ====================
-const datos = [
-  {
-    contrato: "001",
-    anterior: "0001",
-    nombre: "Juan Pérez",
-    domProp: "Calle 1",
-    domCont: "Calle 2",
-    tipo: "Doméstico",
-    inicio: "Ene",
-    actual: "Mar",
-    meses: 3,
-    cuota: 200,
-    recargos: 20
-  },
-  {
-    contrato: "002",
-    anterior: "0002",
-    nombre: "Ana López",
-    domProp: "Calle 3",
-    domCont: "Calle 4",
-    tipo: "Comercial",
-    inicio: "Feb",
-    actual: "Abr",
-    meses: 2,
-    cuota: 300,
-    recargos: 30
+let datos = [];
+
+// ==================== OBTENER DATOS ====================
+async function obtenerDatos() {
+  try {
+    // Usar endpoint específico para reportes que filtra solo adeudos pendientes
+    const respuesta = await fetch("http://localhost:3000/reporte-adeudos");
+    datos = await respuesta.json();
+    cargarTabla(datos);
+    cargarCalles();
+    renderizarGrafica(datos);
+  } catch (error) {
+    console.error(error);
+    alert("Error al cargar adeudos");
   }
-];
+}
+
+// ==================== CARGAR CALLES ====================
+function cargarCalles() {
+  const select = document.getElementById("calle");
+  const calles = [...new Set(datos.map(d => d.domCont).filter(Boolean))];
+  select.innerHTML = '<option value="">Seleccione</option>';
+  calles.forEach(calle => {
+    const option = document.createElement("option");
+    option.value = calle;
+    option.textContent = calle;
+    select.appendChild(option);
+  });
+}
 
 // ==================== CARGAR TABLA ====================
-function cargarTabla(lista = datos) {
-
+function cargarTabla(lista) {
   const tbody = document.getElementById("tabla-body");
   tbody.innerHTML = "";
 
   lista.forEach(item => {
-
-    const totalRecargos = item.recargos * item.meses;
-    const importeAgua = item.cuota * item.meses;
-    const totalPagar = importeAgua + totalRecargos;
-
     tbody.innerHTML += `
       <tr>
         <td>${item.contrato}</td>
-        <td>${item.anterior}</td>
+        <td>${item.contrato_anterior || ""}</td>
         <td>${item.nombre}</td>
-        <td>${item.domProp}</td>
-        <td>${item.domCont}</td>
-        <td>${item.tipo}</td>
-        <td>${item.inicio}</td>
-        <td>${item.actual}</td>
-        <td>${item.meses}</td>
-        <td>$${item.cuota.toFixed(2)}</td>
-        <td>$${item.recargos.toFixed(2)}</td>
-        <td>$${totalRecargos.toFixed(2)}</td>
-        <td>$${importeAgua.toFixed(2)}</td>
-        <td>$${totalPagar.toFixed(2)}</td>
+        <td>${item.domProp || ""}</td>
+        <td>${item.domCont || ""}</td>
+        <td>${item.tipo || ""}</td>
+        <td>—</td>
+        <td>—</td>
+        <td>${item.meses || 0}</td>
+        <td>$0.00</td>
+        <td>$0.00</td>
+        <td>$0.00</td>
+        <td>$${Number(item.importes || 0).toFixed(2)}</td>
+        <td>$${Number(item.importes || 0).toFixed(2)}</td>
       </tr>
     `;
   });
 
-  document.getElementById("infoRegistros").textContent =
-    `Existen ${lista.length} registros en total`;
+  document.getElementById("infoRegistros").textContent = `Existen ${lista.length} registros en total`;
 }
 
-// ==================== CARGAR AL ABRIR ====================
-window.onload = () => {
+// ==================== GRÁFICA DE ADEUDOS ====================
+function renderizarGrafica(lista) {
+  const canvas = document.getElementById("graficaAdeudos");
+  if (!canvas) return;
 
-  cargarTabla();
+  // Agrupar por tipo de servicio
+  const grupos = {};
+  lista.forEach(item => {
+    const tipo = item.tipo || "Sin tipo";
+    if (!grupos[tipo]) grupos[tipo] = { meses: 0, importe: 0, contratos: 0 };
+    grupos[tipo].meses    += Number(item.meses || 0);
+    grupos[tipo].importe  += Number(item.importes || 0);
+    grupos[tipo].contratos++;
+  });
 
-  // ==================== MENÚ ====================
-  const btnMenu = document.getElementById("menu");
+  const etiquetas = Object.keys(grupos);
+  const importes  = etiquetas.map(k => grupos[k].importe);
+  const colores   = ["#3b82f6","#f59e0b","#10b981","#ef4444","#8b5cf6","#06b6d4"];
 
-  if (btnMenu) {
-    btnMenu.onclick = () => {
-      window.location.href = "menu.html";
-    };
-  }
+  if (window.graficaAdeudosInstance) window.graficaAdeudosInstance.destroy();
 
-  // ==================== REGRESAR ====================
-  const btnRegresar = document.getElementById("regresar");
-
-  if (btnRegresar) {
-    btnRegresar.onclick = () => {
-      history.back();
-    };
-  }
-
-  // ==================== LIMPIAR ====================
-  const btnLimpiar = document.getElementById("limpiar");
-
-  if (btnLimpiar) {
-    btnLimpiar.onclick = () => {
-
-      const fecha = document.getElementById("fechaCorte");
-      const calle = document.getElementById("calle");
-
-      if (fecha) fecha.value = "";
-      if (calle) calle.selectedIndex = 0;
-
-      cargarTabla();
-    };
-  }
-
-  // ==================== BUSCAR ====================
-  const btnBuscar = document.getElementById("buscar");
-
-  if (btnBuscar) {
-
-    btnBuscar.onclick = () => {
-
-      const calle = document.getElementById("calle");
-
-      // Si no existe el select, mostrar todo
-      if (!calle) {
-        cargarTabla();
-        return;
+  window.graficaAdeudosInstance = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: etiquetas,
+      datasets: [{
+        label: "Total adeudado ($)",
+        data: importes,
+        backgroundColor: colores.slice(0, etiquetas.length),
+        borderColor: colores.slice(0, etiquetas.length),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true },
+        title: { display: true, text: "Adeudos por tipo de uso" }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { callback: v => "$" + v.toFixed(2) }
+        }
       }
+    }
+  });
+}
 
-      const valor = calle.value.toLowerCase();
+// ==================== INICIO ====================
+window.onload = () => { obtenerDatos(); };
 
-      // Si está vacío, mostrar todo
-      if (valor === "") {
-        cargarTabla();
-        return;
-      }
+document.getElementById("menu").onclick = () => { window.location.href = "menu.html"; };
+document.getElementById("regresar").onclick = () => { history.back(); };
 
-      // Filtrar datos
-      const filtrados = datos.filter(item =>
-        item.domCont.toLowerCase().includes(valor)
-      );
+document.getElementById("limpiar").onclick = () => {
+  document.getElementById("fechaCorte").value = "";
+  document.getElementById("calle").selectedIndex = 0;
+  cargarTabla(datos);
+  renderizarGrafica(datos);
+};
 
-      cargarTabla(filtrados);
-    };
-  }
+document.getElementById("buscar").onclick = () => {
+  const calle = document.getElementById("calle").value;
+  if (calle === "") { cargarTabla(datos); renderizarGrafica(datos); return; }
+  const filtrados = datos.filter(d => d.domCont === calle);
+  cargarTabla(filtrados);
+  renderizarGrafica(filtrados);
+};
 
-  // ==================== DESCARGAR ====================
-  const btnDescargar = document.getElementById("descargar");
-
-  if (btnDescargar) {
-
-    btnDescargar.onclick = () => {
-
-      // Verificar librería XLSX
-      if (typeof XLSX === "undefined") {
-        alert("No se cargó la librería XLSX");
-        return;
-      }
-
-      const datosExcel = datos.map(item => {
-
-        const totalRecargos = item.recargos * item.meses;
-        const importeAgua = item.cuota * item.meses;
-        const totalPagar = importeAgua + totalRecargos;
-
-        return {
-          Contrato: item.contrato,
-          ContratoAnterior: item.anterior,
-          Nombre: item.nombre,
-          DomicilioPropietario: item.domProp,
-          DomicilioContrato: item.domCont,
-          TipoToma: item.tipo,
-          MesInicio: item.inicio,
-          MesActual: item.actual,
-          MesesPendientes: item.meses,
-          Cuota: item.cuota,
-          Recargos: item.recargos,
-          TotalRecargos: totalRecargos,
-          ImporteAgua: importeAgua,
-          TotalPagar: totalPagar
-        };
-      });
-
-      const ws = XLSX.utils.json_to_sheet(datosExcel);
-
-      const wb = XLSX.utils.book_new();
-
-      XLSX.utils.book_append_sheet(
-        wb,
-        ws,
-        "Adeudos"
-      );
-
-      XLSX.writeFile(
-        wb,
-        "reporte_adeudos.xlsx"
-      );
-    };
-  }
-
+document.getElementById("descargar").onclick = () => {
+  const ws = XLSX.utils.json_to_sheet(datos);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Adeudos");
+  XLSX.writeFile(wb, "reporte_adeudos.xlsx");
 };

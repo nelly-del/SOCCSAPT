@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Información de pago</title>
+    <link rel="stylesheet" href="../css/informacionpagos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- TITULO -->
+  <div class="titulo">
+    <h2>Información de pago</h2>
+  </div>
+
+  <!-- BARRA -->
+  <div class="barra">
+
+    <button type="button" class="btn" id="btnRegresar">
+      <i class="fa-solid fa-chevron-left"></i>
+      Regresar
+    </button>
+
+    <button type="button" class="btn" id="btnXML">
+      <i class="fa-solid fa-file-code"></i>
+      Descargar XML
+    </button>
+
+    <button type="button" class="btn" id="btnFactura">
+      <i class="fa-solid fa-print"></i>
+      Imprimir Factura
+    </button>
+
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab activo" onclick="cambiarTab('datos-pago')">Datos pago</button>
+    <button class="tab" onclick="cambiarTab('datos-cfdi')">Datos CFDI</button>
+  </div>
+
+  <!-- PANEL: DATOS PAGO -->
+  <div id="datos-pago" class="panel activo">
+    <div class="contenido">
+
+      <!-- IZQUIERDA -->
+      <div class="info-pago">
+
+        <h3>Información de pago</h3>
+
+        <div class="grupo">
+          <label>Folio pago</label>
+          <div class="valor-grande" id="folioPago"></div>
+        </div>
+
+        <div class="fila">
+          <div class="grupo">
+            <label>Fecha inicio pago</label>
+            <input type="text" id="fechaInicio" readonly>
+          </div>
+          <div class="grupo">
+            <label>Fecha fin pago</label>
+            <input type="text" id="fechaFin" readonly>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <label>Fecha de pago</label>
+          <input type="text" id="fechaPago" readonly>
+        </div>
+
+        <div class="fila-totales">
+          <div class="total-box">
+            <label>No. Meses</label>
+            <h2 id="numMeses"></h2>
+          </div>
+          <div class="total-box">
+            <label>Total</label>
+            <h2 id="total"></h2>
+          </div>
+        </div>
+
+        <div class="fila">
+          <div class="total-box">
+            <label>Servicio de agua</label>
+            <h2 id="servicioAgua"></h2>
+          </div>
+          <div class="total-box">
+            <label>Recargos</label>
+            <h2 id="recargos"></h2>
+          </div>
+          <div class="total-box">
+            <label>Descuentos</label>
+            <h2 id="descuentos"></h2>
+          </div>
+        </div>
+
+        <div class="grupo" style="margin-top: 20px;">
+          <label>Motivo de cancelación:</label>
+        </div>
+
+        <div class="grupo">
+          <label>Comentarios</label>
+          <textarea id="comentarios" readonly></textarea>
+        </div>
+
+      </div>
+
+      <!-- DERECHA -->
+      <div class="tabla-pagos">
+
+        <h3>Desglose de pagos por mes</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>Mes</th>
+              <th>Cuota</th>
+              <th>Importe</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTabla">
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PANEL: DATOS CFDI -->
+  <div id="datos-cfdi" class="panel">
+    <div class="contenido-cfdi">
+
+      <h3>Datos CFDI</h3>
+
+      <div class="fila">
+        <div class="grupo">
+          <label>UUID</label>
+          <input type="text" id="uuid" readonly>
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="grupo">
+          <label>RFC Emisor</label>
+          <input type="text" id="rfcEmisor" readonly>
+        </div>
+        <div class="grupo">
+          <label>RFC Receptor</label>
+          <input type="text" id="rfcReceptor" readonly>
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="grupo">
+          <label>Razón Social Emisor</label>
+          <input type="text" id="razonEmisor" readonly>
+        </div>
+        <div class="grupo">
+          <label>Razón Social Receptor</label>
+          <input type="text" id="razonReceptor" readonly>
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="grupo">
+          <label>Fecha de Timbrado</label>
+          <input type="text" id="fechaTimbrado" readonly>
+        </div>
+        <div class="grupo">
+          <label>Sello Digital</label>
+          <input type="text" id="selloDigital" readonly>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <p id="textoModal"></p>
+    <button class="btn-modal" onclick="cerrarModal()">Aceptar</button>
+    <button class="cancelar-modal" id="btnCancelarModal" onclick="cancelarModal()">Cancelar</button>
+  </div>
+</div>
+
+<script src="../js/informacionpagos.js"></script>
+
+</body>
+</html>

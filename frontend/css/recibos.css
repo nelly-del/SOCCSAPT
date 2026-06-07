@@ -199,18 +199,20 @@ td{
 
 }
 
-.estado-pendiente{
-
-  color:#c0392b;
-  font-weight:bold;
-
+.estado-pagado{
+  background: green;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
 }
 
-.estado-pagado{
-
-  color:#27ae60;
-  font-weight:bold;
-
+.estado-pendiente{
+  background: orange;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* MODAL */

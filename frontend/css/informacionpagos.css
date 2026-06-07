@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #f4f4f4;
+}
+.container{
+    width: 100%;
+}
+
+/* TITULO */
+.titulo{
+    background: #f5f5f5;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+.titulo h2{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* BARRA */
+.barra{
+    background: #990000;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+.btn{
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+.btn:hover{
+    background: #a93226;
+}
+
+/* TABS */
+.tabs{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+    padding: 0 20px;
+}
+.tab{
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+.tab.activo{
+    color: #990000;
+    border-bottom: 3px solid #990000;
+    font-weight: 500;
+}
+.tab:hover{
+    color: #990000;
+}
+
+/* PANELES */
+.panel{
+    display: none;
+}
+.panel.activo{
+    display: block;
+}
+
+/* CONTENIDO */
+.contenido{
+    display: flex;
+    gap: 30px;
+    padding: 25px;
+}
+
+/* CONTENIDO CFDI */
+.contenido-cfdi{
+    padding: 25px;
+    max-width: 800px;
+}
+.contenido-cfdi h3{
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* IZQUIERDA */
+.info-pago{
+    width: 50%;
+}
+.info-pago h3{
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* VALOR FOLIO */
+.valor-grande{
+    font-size: 28px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.grupo{
+    margin-bottom: 18px;
+}
+.grupo label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #555;
+}
+.grupo input{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cfcfcf;
+    background: #efefef;
+    border-radius: 2px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #333;
+    cursor: default;
+}
+.grupo input:focus{
+    outline: none;
+}
+.grupo textarea{
+    width: 100%;
+    height: 80px;
+    border: 1px solid #cfcfcf;
+    background: #efefef;
+    padding: 10px;
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #333;
+    cursor: default;
+}
+.grupo textarea:focus{
+    outline: none;
+}
+
+.fila{
+    display: flex;
+    gap: 20px;
+}
+.fila .grupo{
+    width: 100%;
+}
+
+/* TOTALES */
+.fila-totales{
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+.total-box{
+    text-align: center;
+    width: 100%;
+}
+.total-box label{
+    font-size: 13px;
+    color: #555;
+}
+.total-box h2{
+    margin-top: 8px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* DERECHA */
+.tabla-pagos{
+    width: 50%;
+}
+.tabla-pagos h3{
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+thead{
+    background: #990000;
+    color: white;
+}
+th,
+td{
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+tbody tr{
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+.cargo{
+    background: #14a44d !important;
+    color: white;
+    font-weight: 500;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  width:350px;
+  text-align:center;
+  animation:aparecer .3s ease;
+}
+.modal-content p{
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #333;
+}
+.btn-modal{
+    background:#8B0000;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.btn-modal:hover{
+    background: #c0392b;
+}
+.cancelar-modal{
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.cancelar-modal:hover{
+    background-color: #7a1f1f;
+}

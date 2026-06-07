@@ -1,171 +1,102 @@
-const pagos = [];
-/* ELEMENTOS HTML */
+let listaPagos = [];
+let accionModal = null;
 
-const tablaBody = document.getElementById("tablaBody");
-const botonBuscar = document.getElementById("btnBuscar");
-const busquedaFecha = document.getElementById("busquedaFecha");
+const tablaBody    = document.getElementById("tablaBody");
+const busquedaFecha  = document.getElementById("busquedaFecha");
 const busquedaNombre = document.getElementById("busquedaNombre");
+const botonBuscar  = document.getElementById("btnBuscar");
 const botonLimpiar = document.getElementById("btnLimpiar");
-const botonMenu = document.getElementById("btnMenu");
+const botonMenu    = document.getElementById("btnMenu");
 const botonOrdenar = document.getElementById("btnOrdenar");
 
+// ============ CARGAR DATOS ============
+async function cargarHistorial() {
+    try {
+        const respuesta = await fetch("http://localhost:3000/historial-pagos");
+        if (!respuesta.ok) throw new Error("Error al obtener los datos");
+        listaPagos = await respuesta.json();
+        mostrarPagos(listaPagos);
+    } catch (error) {
+        console.error("Error:", error);
+        mostrarModal("No se pudo cargar el historial de pagos. Verifica la conexión.");
+    }
+}
 
-/* MOSTRAR PAGOS */
-
-function mostrarPagos(listaPagos){
-
+// ============ RENDERIZAR TABLA ============
+function mostrarPagos(datos) {
     tablaBody.innerHTML = "";
-
-    listaPagos.forEach(function(pago){
-
+    if (!datos || datos.length === 0) {
+        tablaBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No existen pagos registrados</td></tr>`;
+        return;
+    }
+    datos.forEach(function(pago) {
+        const fechaFormateada = pago.fecha ? new Date(pago.fecha).toLocaleDateString("es-MX") : "N/A";
         tablaBody.innerHTML += `
-
         <tr>
-
-            <td>${pago.fecha}</td>
-
-            <td>${pago.nombre}</td>
-
-            <td>${pago.contrato}</td>
-
-            <td>${pago.monto}</td>
-
+            <td>${fechaFormateada}</td>
+            <td>${pago.nombre || 'Sin nombre'}</td>
+            <td>${pago.contrato || 'N/A'}</td>
+            <td>${pago.servicio || '—'}</td>
+            <td>$${parseFloat(pago.monto || 0).toFixed(2)}</td>
         </tr>
-
         `;
-
     });
-
 }
 
+document.addEventListener("DOMContentLoaded", cargarHistorial);
 
-/* MOSTRAR TODOS AL INICIO */
-
-mostrarPagos(pagos);
-
-
-/* BOTÓN BUSCAR */
-
-botonBuscar.addEventListener("click", function(){
-
-    const fecha = busquedaFecha.value;
-
-    const nombre = busquedaNombre.value;
-
-
-    const resultados = pagos.filter(function(pago){
-
-        const coincideFecha =
-
-        fecha === "" ||
-
-        pago.fecha.includes(fecha);
-
-
-        const coincideNombre =
-
-        nombre === "" ||
-
-        pago.nombre.toLowerCase().includes(nombre.toLowerCase());
-
-
+// ============ BÚSQUEDA ============
+botonBuscar.addEventListener("click", function() {
+    const fecha  = busquedaFecha.value;
+    const nombre = busquedaNombre.value.toLowerCase();
+    const resultados = listaPagos.filter(function(pago) {
+        const fechaPago = pago.fecha ? new Date(pago.fecha).toLocaleDateString("es-MX") : '';
+        const coincideFecha  = fecha  === "" || fechaPago.includes(fecha);
+        const coincideNombre = nombre === "" || (pago.nombre && pago.nombre.toLowerCase().includes(nombre));
         return coincideFecha && coincideNombre;
-
     });
-
-
-    console.log(resultados);
-
-
+    if (resultados.length === 0) mostrarModal("No se encontraron pagos con esos criterios.");
     mostrarPagos(resultados);
-
-
-    if(resultados.length === 0){
-
-        mostrarModal("No se encontraron pagos");
-
-    }
-
 });
 
-
-/* BOTÓN LIMPIAR */
-
-botonLimpiar.addEventListener("click", function(){
-
+botonLimpiar.addEventListener("click", function() {
     busquedaFecha.value = "";
-
     busquedaNombre.value = "";
-
-    mostrarPagos(pagos);
-
+    mostrarPagos(listaPagos);
 });
 
-
-/* BOTÓN ORDENAR */
-
-botonOrdenar.addEventListener("click", function(){
-
-    pagos.sort(function(a, b){
-
+botonOrdenar.addEventListener("click", function() {
+    const ordenados = [...listaPagos].sort(function(a, b) {
         return new Date(b.fecha) - new Date(a.fecha);
-
     });
-
-    mostrarPagos(pagos);
-
+    mostrarPagos(ordenados);
 });
 
-
-/* BOTÓN MENÚ */
-
-botonMenu.addEventListener("click", function(){
-
-    mostrarModal("¿Desea regresar al menú?", function(){
-
-        window.location.href = "menu.html";
-
-    });
-
-});
-
-
-/* MOSTRAR MODAL */
-
-function mostrarModal(mensaje, accion){
-
-    document.getElementById("textoModal").textContent = mensaje;
-
-    document.getElementById("modal").style.display = "flex";
-
-    accionModal = accion;
-
-}
-
-
-/* BOTÓN ACEPTAR MODAL */
-
-function cerrarModal(){
-
-    document.getElementById("modal").style.display = "none";
-
-    if(accionModal){
-
-        accionModal();
-
-        accionModal = null;
-
+// ============ MODAL ============
+function mostrarModal(mensaje, accion) {
+    const modal = document.getElementById("modal");
+    const textoModal = document.getElementById("textoModal");
+    if (modal && textoModal) {
+        textoModal.textContent = mensaje;
+        modal.style.display = "flex";
+        accionModal = accion || null;
+    } else {
+        alert(mensaje);
     }
-
 }
 
-
-/* BOTÓN CANCELAR MODAL */
-
-function cancelarModal(){
-
+function cerrarModal() {
     document.getElementById("modal").style.display = "none";
-
-    accionModal = null;
-
+    if (accionModal) { accionModal(); accionModal = null; }
 }
+
+function cancelarModal() {
+    document.getElementById("modal").style.display = "none";
+    accionModal = null;
+}
+
+botonMenu.addEventListener("click", function() {
+    mostrarModal("¿Desea regresar al menú?", function() {
+        window.location.href = "menu.html";
+    });
+});

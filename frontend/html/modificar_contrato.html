@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Modificar contrato</title>
+    <link rel="stylesheet" href="../css/modificar_contrato.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- TITULO -->
+  <div class="titulo">
+    <h2>Editar contrato</h2>
+  </div>
+
+  <!-- BARRA -->
+  <div class="barra">
+
+    <button type="button" class="btn" id="regresar">
+      <i class="fa-solid fa-chevron-left"></i>
+      Regresar
+    </button>
+
+    <button type="submit" form="formContrato" class="btn" id="guardar">
+      <i class="fa-regular fa-bookmark"></i>
+      Guardar
+    </button>
+
+    <button type="button" class="btn" id="cancelar">
+      <i class="fa-solid fa-xmark"></i>
+      Cancelar
+    </button>
+
+    <div class="busqueda">
+      <input type="search" id="busqueda" name="q" placeholder="Buscar contrato">
+      <button type="button" id="btnBuscar" class="btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="contenido">
+
+    <!-- FORMULARIO -->
+    <form id="formContrato" class="formulario">
+
+      <div class="fila">
+
+        <div class="grupo">
+          <label>No.Contrato</label>
+          <input type="text" id="id_contrato">
+        </div>
+
+        <div class="grupo">
+          <label>Codigo</label>
+          <input type="text" id="codigo_contribuyente">
+        </div>
+
+        <div class="grupo">
+          <label>Descripción</label>
+          <input type="text" id="descripcion">
+        </div>
+
+      </div>
+
+      <div class="fila">
+
+        <div class="grupo">
+          <label>Fecha contrato</label>
+          <input type="date" id="fecha">
+        </div>
+
+        <div class="grupo">
+          <label>Contrato anterior</label>
+          <input type="date" id="contrato_anterior">
+        </div>
+
+      </div>
+
+      <h3>Contribuyente</h3>
+
+      <div class="fila3">
+
+        <div class="grupo">
+          <label>Estado</label>
+          <input type="text" id="estado">
+        </div>
+
+        <div class="grupo">
+          <label>Municipio</label>
+          <input type="text" id="municipio">
+        </div>
+
+        <div class="grupo">
+          <label>Localidad</label>
+          <input type="text" id="localidad">
+        </div>
+
+      </div>
+
+      <div class="fila">
+
+        <div class="grupo">
+          <label>Colonia</label>
+          <input type="text" id="colonia">
+        </div>
+
+        <div class="grupo">
+          <label>Calle</label>
+          <input type="text" id="calle">
+        </div>
+
+      </div>
+
+      <div class="fila3">
+
+        <div class="grupo">
+          <label>Número exterior</label>
+          <input type="text" id="numExt">
+        </div>
+
+        <div class="grupo">
+          <label>Número interior</label>
+          <input type="text" id="numInt">
+        </div>
+
+        <div class="grupo">
+          <label>Código postal</label>
+          <input type="text" id="cp">
+        </div>
+
+      </div>
+
+      <div class="fila3">
+
+        <div class="grupo">
+          <label>Bomba</label>
+          <select id="bomba">
+            <option value="">Seleccione</option>
+            <option>Principal</option>
+            <option>Manantial</option>
+          </select>
+        </div>
+
+        <div class="grupo">
+          <label>Tipo de uso</label>
+          <select id="tipo_uso">
+            <option value="">Seleccione</option>
+            <option>Doméstico</option>
+            <option>Comercial</option>
+            <option>Industrial</option>
+          </select>
+        </div>
+
+        <div class="grupo">
+          <label>Unidad Administrativa</label>
+          <select id="unidad">
+            <option value="">Seleccione</option>
+            <option>00123 Actipac</option>
+            <option>00124 Teotlalpan</option>
+			<option>00125 Ocotitla</option>
+          </select>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+
+    <p id="textoModal"></p>
+
+    <button class="btn-modal" onclick="cerrarModal()">
+      Aceptar
+    </button>
+
+    <button class="cancelar-modal" id="btnCancelarModal" onclick="cancelarModal()">
+      Cancelar
+    </button>
+
+  </div>
+</div>
+
+<script src="../js/modificar_contrato.js"></script>
+
+</body>
+</html>

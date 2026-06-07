@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cambio de contribuyente</title>
+
+<link rel="stylesheet" href="../css/cambio_de_contribuyente.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Barra superior -->
+    <div class="container">
+
+        <h2 class="titulo">
+            Cambio de contribuyente
+        </h2>
+
+        <!-- Botones -->
+        <div class="botones">
+			
+			<button type="button" class="btn menu" id="btnMenu">
+				<i class="bx bx-menu"></i>
+				Menú
+			</button>
+
+            <button type="button" class="btn cancelar" id="btnCancelar">
+                <i class="fa-solid fa-xmark"></i>
+                Cancelar
+            </button>
+
+            <button type ="submit" class="btn guardar" id="btnGuardar"  form="formContribuyente">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Guardar
+            </button>
+			
+
+        </div>
+
+        <!-- Buscador -->
+        <div class="busqueda">
+
+            <input 
+                type="search" id="busqueda"
+                name="q" 
+                placeholder="Buscar contribuyente por código"
+            >
+			
+			<div id="listaResultados" class="lista-resultados"></div>
+
+            <button type="button" id="btnBuscar" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+    </div>
+	
+	<div id="mensaje"></div>
+
+    <!-- Formulario -->
+    <form class="formulario" id="formContribuyente">
+
+        <div class="campo">
+            <label for="codigo">Código</label>
+            <input type="text" id="codigo" name="codigo" required>
+        </div>
+
+        <div class="campo">
+            <label for="apellidoPaterno">Apellido Paterno</label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
+        </div>
+
+        <div class="campo">
+            <label for="apellidoMaterno">Apellido Materno</label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
+        </div>
+
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="campo">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" value="Tlaxcala" >
+        </div>
+
+        <div class="campo">
+            <label for="municipio">Municipio</label>
+            <input type="text" id="municipio" name="municipio" value="Tetla De La Solidaridad" >
+        </div>
+
+        <div class="campo">
+            <label for="localidad">Localidad</label>
+
+            <select id="localidad" name="localidad">
+                <option value="">Seleccione una opción</option>
+                <option value="1">San Bartolomé Matlalohcan</option>
+                <option value="2">San Francisco Atexcatzinco</option>
+				<option value="3">Actipac</option>
+				<option value="3">Ocotitla</option>
+				<option value="3">Teotlalpan</option>
+				
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="colonia">Colonia</label>
+            <input type="text" id="colonia" name="colonia" required>
+        </div>
+
+        <div class="campo">
+            <label for="calle">Calle</label>
+            <input type="text" id="calle" name="calle" required>
+        </div>
+
+        <div class="campo">
+            <label for="numExt">Número Exterior</label>
+            <input type="text" id="numExt" name="numExt" pattern="[A-Za-z0-9/-]+" required>
+        </div>
+
+        <div class="campo">
+            <label for="numInt">Número Interior</label>
+            <input type="text" id="numInt" name="numInt" pattern="[A-Za-z0-9/-]*">
+        </div>
+
+        <div class="campo">
+            <label for="cp">Código Postal</label>
+            <input type="text" id="cp" name="cp" pattern = "[0-9]{5}" required>
+        </div>
+
+        <div class="campo">
+            <label for="razonSocial">Razón Social</label>
+            <input type="text" id="razonSocial" name="razonSocial">
+        </div>
+
+        <div class="campo">
+            <label for="rfc">RFC</label>
+            <input type="text" id="rfc" name="rfc" pattern="[A-ZÑ&]{4}[0-9]{6}[A-Z0-9]{3}">
+        </div>
+
+        <div class="campo">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required>
+        </div>
+
+        <div class="campo">
+            <label for="telefono">Número de Teléfono</label>
+            <input type="tel" id="telefono" name="telefono"
+			pattern = "[0-9]{10}"  
+			required>
+        </div>
+
+        <div class="campo">
+            <label for="regimenFiscal">Régimen Fiscal</label>
+            <input type="text" id="regimenFiscal" name="regimenFiscal">
+        </div>
+
+        <div class="campo">
+            <label for="propietario">Propietario</label>
+            <select id="propietario" name="propietario">
+                <option value="">Seleccione una opción</option>
+                <option value="1">Sí</option>
+                <option value="2">No</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="contrato">Se asignará contrato</label>
+           <select id="contrato" name="contrato">
+                <option value="">Seleccione una opción</option>
+                <option value="1">Sí</option>
+                <option value="2">No</option>
+            </select>
+        </div>
+
+        <div class="campo">
+			<label for="localidad">Estatus del contribuyente</label>
+             <select id="estatus" name="estatus">
+                <option value="">Seleccione una opción</option>
+                <option value="1">Vigente</option>
+                <option value="2">Baja</option>
+            </select>
+        </div>
+ 
+    </form>
+	<script src="../jS/cambio_de_contribuyente.js"></script>
+	
+
+<!-- MODAL -->
+	<div id="modal" class="modal">
+ 	<div class="modal-content">
+    <p id="textoModal"></p>
+    <button class="btn-modal" onclick="cerrarModal()">
+      Aceptar
+    </button>
+		
+	<button id="btnCancelarModal" class="cancelar-modal" onclick="cancelarModal()">
+	Cancelar
+	</button>
+		</div>
+	</div>
+
+</body>
+</html>

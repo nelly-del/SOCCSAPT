@@ -67,7 +67,8 @@ document.getElementById("btnGenerar").onclick = async () => {
   const mesFin = document.getElementById("mesFin").value;
   const mesesMorosos = document.getElementById("mesesMorosos").value;
   const observaciones = document.getElementById("observaciones").value;
-  const idDescuento = document.getElementById("descuento").value;
+  const idDescuentoRaw = document.getElementById("descuento").value;
+  const idDescuento = (idDescuentoRaw && idDescuentoRaw !== "") ? idDescuentoRaw : null;
 
   // El importe digitado por el usuario es nuestra base original
   const importeCaja = parseFloat(document.getElementById("importe").value) || 0;
@@ -234,7 +235,9 @@ async function cargarAdeudos() {
           <td>${servicioTexto}</td>
           <td>${a.meses_morosos}</td>
           <td>$${importeFormateado}</td>
-          <td class="estado-pendiente">Pendiente</td>
+          <td class="${a.timbrado == 1 ? 'estado-pagado' : 'estado-pendiente'}">
+        ${a.timbrado == 1 ? 'Pagado' : 'Pendiente'}
+      </td>
         </tr>`;
     });
 
@@ -248,7 +251,7 @@ async function cargarAdeudos() {
 // ============================
 async function cargarDescuentos() {
   try {
-    const res = await fetch("http://localhost:3000/descuentos");
+    const res = await fetch("http://127.0.0.1:3000/descuentos");
     const descuentos = await res.json();
 
     const select = document.getElementById("descuento");

@@ -29,9 +29,6 @@ async function cargarDatos(pagina = 1) {
         <td>${c.colonia}</td>
         <td>${c.calle}</td>
         <td>${c.cp}</td>
-        <td class="${c.estatus == 1 ? 'activo' : 'inactivo'}"> 
-          ${c.estatus == 1 ? 'Vigente' : 'Baja'}
-        </td>
        <td 
   class="${c.estatus == 1 ? 'activo' : 'inactivo'}"
   onclick="cambiarEstatus('${c.codigo_contribuyente}', ${c.estatus})"
@@ -80,6 +77,7 @@ document.getElementById('contrato').onclick = () => window.location.href = "cont
 document.getElementById('pago').onclick = () => window.location.href = "pagos.html";
 document.getElementById('reporte').onclick = () => window.location.href = "reportes.html";
 document.getElementById('agregar').onclick = () => window.location.href = "registrocontribuyentes.html";
+document.getElementById('cambiar').onclick = () => window.location.href = "Cambio_de_contribuyente.html";
 
 //GENERAR EXCEL
 document.getElementById('descargar').onclick = generarExcel;

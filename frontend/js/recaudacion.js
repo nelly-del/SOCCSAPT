@@ -1,29 +1,30 @@
-const datos = [
-  {
-    folio: 1,
-    codigo: "001",
-    nombre: "Juan",
-    contrato: "123",
-    periodo: "Ene-Feb",
-    meses: 2,
-    tarifa: 200,
-    recargos: 20,
-    descuentos: 10
-  },
-  {
-    folio: 2,
-    codigo: "002",
-    nombre: "Ana",
-    contrato: "456",
-    periodo: "Mar-Abr",
-    meses: 2,
-    tarifa: 300,
-    recargos: 30,
-    descuentos: 20
+let datos = [];
+
+// ==================== OBTENER DATOS ====================
+
+async function obtenerDatos() {
+
+  try {
+
+    const respuesta =
+      await fetch("http://localhost:3000/recaudacion");
+
+    datos = await respuesta.json();
+
+    cargarTabla(datos);
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Error al cargar la información");
+
   }
-];
+
+}
 
 // ==================== CARGAR TABLA ====================
+
 function cargarTabla(lista = datos) {
 
   let subtotal = 0;
@@ -32,20 +33,33 @@ function cargarTabla(lista = datos) {
   let totalDesc = 0;
   let neto = 0;
 
-  const tbody = document.getElementById("tabla-body");
+  const tbody =
+    document.getElementById("tabla-body");
 
   tbody.innerHTML = "";
 
   lista.forEach(d => {
 
+    const tarifa =
+      Number(d.tarifa) || 0;
+
+    const recargos =
+      Number(d.recargos) || 0;
+
+    const descuentos =
+      Number(d.descuentos) || 0;
+
+    const meses =
+      Number(d.meses) || 0;
+
     let totalRecargos =
-      d.recargos * d.meses;
+      recargos * meses;
 
     let totalDescuentos =
-      d.descuentos * d.meses;
+      descuentos * meses;
 
     let servicio =
-      d.tarifa * d.meses;
+      tarifa * meses;
 
     let importe =
       servicio + totalRecargos;
@@ -66,11 +80,11 @@ function cargarTabla(lista = datos) {
         <td>${d.nombre}</td>
         <td>${d.contrato}</td>
         <td>${d.periodo}</td>
-        <td>${d.meses}</td>
-        <td>$${d.tarifa.toFixed(2)}</td>
-        <td>$${d.recargos.toFixed(2)}</td>
+        <td>${meses}</td>
+        <td>$${tarifa.toFixed(2)}</td>
+        <td>$${recargos.toFixed(2)}</td>
         <td>$${totalRecargos.toFixed(2)}</td>
-        <td>$${d.descuentos.toFixed(2)}</td>
+        <td>$${descuentos.toFixed(2)}</td>
         <td>$${totalDescuentos.toFixed(2)}</td>
         <td>$${servicio.toFixed(2)}</td>
         <td>$${importe.toFixed(2)}</td>
@@ -93,21 +107,26 @@ function cargarTabla(lista = datos) {
 
   document.getElementById("neto").innerText =
     "$" + neto.toFixed(2);
+
 }
 
 // ==================== INICIAR ====================
+
 window.onload = () => {
 
-  cargarTabla();
+  obtenerDatos();
 
-  // ==================== MENÚ ====================
+  // MENÚ
+
   document.getElementById("menu").onclick = () => {
 
     window.location.href =
       "menu.html";
+
   };
 
-  // ==================== BUSCAR ====================
+  // BUSCAR
+
   document.getElementById("buscar").onclick = () => {
 
     const cajero =
@@ -117,17 +136,22 @@ window.onload = () => {
 
       cargarTabla(datos);
       return;
+
     }
 
-    const filtrados = datos.filter(d =>
-      d.nombre.toLowerCase()
-        .includes(cajero.toLowerCase())
-    );
+    const filtrados =
+      datos.filter(d =>
+        d.cajero &&
+        d.cajero.toLowerCase() ===
+        cajero.toLowerCase()
+      );
 
     cargarTabla(filtrados);
+
   };
 
-  // ==================== LIMPIAR ====================
+  // LIMPIAR
+
   document.getElementById("limpiar").onclick = () => {
 
     document.getElementById("fechaInicio").value = "";
@@ -137,24 +161,23 @@ window.onload = () => {
     document.getElementById("cajero").selectedIndex = 0;
 
     cargarTabla(datos);
+
   };
 
-  // ==================== IMPRIMIR ====================
+  // IMPRIMIR
+
   document.getElementById("imprimir").onclick = () => {
 
     window.print();
+
   };
 
-  // ==================== IMPRIMIR CORTE ====================
-  document.getElementById("imprimirCorte").onclick = () => {
+  // FORMATO MENSUAL
 
-    alert("Impresión de corte");
-  };
-
-  // ==================== FORMATO MENSUAL ====================
   document.getElementById("formatoMensual").onclick = () => {
 
     alert("Formato mensual");
+
   };
 
 };
