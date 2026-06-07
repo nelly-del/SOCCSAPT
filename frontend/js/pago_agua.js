@@ -46,8 +46,10 @@ async function buscarContrato() {
     }
 }
 
-function poblarFormulario(datos) {
-    // --- PESTAÑA 1: DATOS DEL CONTRATO ---
+ // Cambia poblarFormulario a async
+async function poblarFormulario(datos) {
+    
+    // --- PESTAÑA 1: DATOS DEL CONTRATO --- (sin cambios)
     document.getElementById("txt-contrato-id").textContent  = datos.id_contrato || "—";
     document.getElementById("txt-contrato-desc").textContent = datos.tipo_de_uso ? `Servicio de ${datos.tipo_de_uso.toLowerCase()}` : "—";
     document.getElementById("txt-contrato-ultimo-mes").textContent = datos.ultimo_pago || "Sin pagos previos";
@@ -70,7 +72,6 @@ function poblarFormulario(datos) {
     document.getElementById("txt-servicio-bomba").textContent = datos.bomba || "—";
     document.getElementById("txt-servicio-uso").textContent  = datos.tipo_de_uso || "—";
 
-    // Actualizar campos de búsqueda con los datos encontrados
     document.getElementById("inp-contrato").value = datos.id_contrato || "";
     document.getElementById("inp-nombre").value   = nombreCompleto;
 
@@ -79,13 +80,31 @@ function poblarFormulario(datos) {
         adeudoIdActual = datos.id_adeudo;
         importeBaseOriginal = parseFloat(datos.importes || 0);
 
-        document.getElementById("lbl-periodo-pago").textContent = `Pendiente de pago`;
-        document.getElementById("lbl-meses-cubrir").textContent = a.meses_morosos || "1";
+        // Meses morosos desde adeudos
+        document.getElementById("lbl-meses-cubrir").textContent = datos.meses_morosos || "1";
+
+        document.getElementById("lbl-periodo-pago").textContent  = `Pendiente de pago`;
         document.getElementById("desglose-servicio").textContent = `$${importeBaseOriginal.toFixed(2)}`;
-        document.getElementById("desglose-folio").textContent   = `F-${datos.id_adeudo}`;
-        document.getElementById("desglose-tarifa").textContent  = datos.tipo_de_uso || "Doméstico / Agua";
-        document.getElementById("desglose-descuento").textContent = "$0.00";
-        document.getElementById("desglose-timbrado").innerHTML  = `<span class="badge badge-warn">Pendiente</span>`;
+        document.getElementById("desglose-folio").textContent    = `F-${datos.id_adeudo}`;
+        document.getElementById("desglose-tarifa").textContent   = datos.tipo_de_uso || "Doméstico / Agua";
+        //document.getElementById("desglose-timbrado").innerHTML   = `<span class="badge badge-warn">Pendiente</span>`;//
+
+        // Descuento: fetch + muestra nombre real (SIN duplicado abajo)
+        if (datos.id_descuento) {
+            try {
+                const resDesc = await fetch("http://localhost:3000/descuentos");
+                const descuentos = await resDesc.json();
+                const desc = descuentos.find(d => d.id_descuento == datos.id_descuento);
+                document.getElementById("desglose-descuento").textContent = desc
+                    ? `${desc.tipo} (${desc.valor}%)`
+                    : "Sin descuento";
+            } catch {
+                document.getElementById("desglose-descuento").textContent = "Sin descuento";
+            }
+        } else {
+            // Sin descuento — esto ya no se sobreescribe
+            document.getElementById("desglose-descuento").textContent = "Sin descuento";
+        }
 
         recalcularTotales();
     } else {
@@ -128,8 +147,8 @@ async function pagar() {
 
         if (respuesta.ok) {
             alert("¡Cobro guardado y comprobante fiscal Timbrado con éxito!");
-            document.getElementById("desglose-timbrado").innerHTML =
-                `<span class="badge" style="background:#d1e7dd;color:#0f5132;padding:4px 8px;border-radius:4px;font-weight:bold;">✔ Timbrado</span>`;
+          //  document.getElementById("desglose-timbrado").innerHTML =//
+               // `<span class="badge" style="background:#d1e7dd;color:#0f5132;padding:4px 8px;border-radius:4px;font-weight:bold;">✔ Timbrado</span>`;//
             adeudoIdActual = null;
         } else {
             const err = await respuesta.json();
@@ -167,7 +186,7 @@ function limpiarSeccionPago() {
     //document.getElementById("desglose-total").textContent  = "$0.00";//
     document.getElementById("desglose-folio").textContent  = "—";
     document.getElementById("desglose-tarifa").textContent = "—";
-    document.getElementById("desglose-timbrado").innerHTML = `<span class="badge badge-warn">Pendiente</span>`;
+    //document.getElementById("desglose-timbrado").innerHTML = `<span class="badge badge-warn">Pendiente</span>`;//
 }
 
 function limpiar() {

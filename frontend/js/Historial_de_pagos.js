@@ -45,7 +45,6 @@ function mostrarPagos(datos) {
 
 document.addEventListener("DOMContentLoaded", cargarHistorial);
 
-<<<<<<< HEAD
 // ============ BÚSQUEDA ============
 botonBuscar.addEventListener("click", function() {
     const fecha  = busquedaFecha.value;
@@ -54,36 +53,6 @@ botonBuscar.addEventListener("click", function() {
         const fechaPago = pago.fecha ? new Date(pago.fecha).toLocaleDateString("es-MX") : '';
         const coincideFecha  = fecha  === "" || fechaPago.includes(fecha);
         const coincideNombre = nombre === "" || (pago.nombre && pago.nombre.toLowerCase().includes(nombre));
-=======
-/* MOSTRAR TODOS AL INICIO */
-
-mostrarPagos(pagos);
-
-
-/* BOTÓN BUSCAR */
-
-botonBuscar.addEventListener("click", function(){
-
-    const fecha = busquedaFecha.value;
-    const nombre = busquedaNombre.value;
-
-    const resultados = pagos.filter(function(pago){
-
-        const coincideFecha =
-
-        fecha === "" ||
-
-        pago.fecha.includes(fecha);
-
-
-        const coincideNombre =
-
-        nombre === "" ||
-
-        pago.nombre.toLowerCase().includes(nombre.toLowerCase());
-
-
->>>>>>> a0fcbc245f401c399900e5c315fb9fed996210b6
         return coincideFecha && coincideNombre;
     });
     if (resultados.length === 0) mostrarModal("No se encontraron pagos con esos criterios.");
