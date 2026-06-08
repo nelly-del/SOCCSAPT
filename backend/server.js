@@ -412,12 +412,19 @@ app.get("/pagos", (req, res) => {
       p.fecha_pago,
       c.codigo_contribuyente,
       CONCAT(ct.nombre,' ',ct.apellido_paterno,' ',ct.apellido_materno) AS nombre,
-      d.tipo   AS descuento,
-      d.valor  AS porcentaje_descuento
+      a.meses_morosos,
+      da.tipo AS descuento,
+      da.valor AS porcentaje_descuento
     FROM pagos p
-    LEFT JOIN contratos c  ON p.id_contrato = c.id_contrato
+    LEFT JOIN contratos c ON p.id_contrato = c.id_contrato
     LEFT JOIN contribuyentes ct ON c.codigo_contribuyente = ct.codigo_contribuyente
-    LEFT JOIN descuentos d ON p.id_descuento = d.id_descuento
+    LEFT JOIN adeudos a ON a.id_adeudo = (
+      SELECT id_adeudo FROM adeudos
+      WHERE id_contrato = p.id_contrato
+      AND timbrado = 1
+      ORDER BY id_adeudo DESC LIMIT 1
+    )
+    LEFT JOIN descuentos da ON a.id_descuento = da.id_descuento
     ORDER BY p.id_pagos DESC
   `;
   conexion.query(sql, (error, result) => {
@@ -425,7 +432,6 @@ app.get("/pagos", (req, res) => {
     res.json(result);
   });
 });
-
 // CAMBIAR ESTATUS DE PAGOS
 app.put("/pagos/estado/:id", (req, res) => {
   const { estado } = req.body;
@@ -443,7 +449,6 @@ app.put("/pagos/timbrado/:id", (req, res) => {
     res.json({ mensaje: "Timbrado actualizado" });
   });
 });
-
 // BUSQUEDA DE PAGOS
 app.get("/pagos/busqueda", async (req, res) => {
   try {
@@ -452,21 +457,28 @@ app.get("/pagos/busqueda", async (req, res) => {
       SELECT p.*,
         CONCAT(ct.nombre,' ',ct.apellido_paterno,' ',ct.apellido_materno) AS nombre,
         c.codigo_contribuyente,
-        d.tipo AS descuento,
-        d.valor AS porcentaje_descuento
+        a.meses_morosos,
+        da.tipo AS descuento,
+        da.valor AS porcentaje_descuento
       FROM pagos p
       INNER JOIN contratos c ON p.id_contrato = c.id_contrato
       INNER JOIN contribuyentes ct ON c.codigo_contribuyente = ct.codigo_contribuyente
-      LEFT JOIN descuentos d ON p.id_descuento = d.id_descuento
+      LEFT JOIN adeudos a ON a.id_adeudo = (
+        SELECT id_adeudo FROM adeudos
+        WHERE id_contrato = p.id_contrato
+        AND timbrado = 1
+        ORDER BY id_adeudo DESC LIMIT 1
+      )
+      LEFT JOIN descuentos da ON a.id_descuento = da.id_descuento
       WHERE 1=1
     `;
     const valores = [];
-    if (fechaInicio) { sql += ` AND DATE(p.fecha_pago) >= ?`; valores.push(fechaInicio); }
-    if (fechaFin)    { sql += ` AND DATE(p.fecha_pago) <= ?`; valores.push(fechaFin); }
-    if (contrato)    { sql += ` AND p.id_contrato = ?`;       valores.push(contrato); }
+    if (fechaInicio)   { sql += ` AND DATE(p.fecha_pago) >= ?`; valores.push(fechaInicio); }
+    if (fechaFin)      { sql += ` AND DATE(p.fecha_pago) <= ?`; valores.push(fechaFin); }
+    if (contrato)      { sql += ` AND p.id_contrato = ?`;       valores.push(contrato); }
     if (contribuyente) { sql += ` AND c.codigo_contribuyente = ?`; valores.push(contribuyente); }
-    if (servicio)    { sql += ` AND p.servicio = ?`;          valores.push(servicio); }
-    if (vigente === "1") { sql += ` AND p.estatus = 1`; }
+    if (servicio)      { sql += ` AND p.servicio = ?`;          valores.push(servicio); }
+    if (vigente === "1")    { sql += ` AND p.estatus = 1`; }
     if (noTimbrado === "1") { sql += ` AND p.timbrado = 0`; }
     sql += ` ORDER BY p.id_pagos DESC`;
     const [rows] = await conexion.promise().query(sql, valores);
@@ -476,7 +488,6 @@ app.get("/pagos/busqueda", async (req, res) => {
     res.status(500).json({ mensaje: "Error al buscar pagos" });
   }
 });
-
 // LISTADO DE SELECCION DE CONTRATOS EN PAGOS
 app.get("/contratos/listado", (req, res) => {
   conexion.query(`SELECT id_contrato FROM contratos ORDER BY id_contrato`, (error, result) => {
@@ -542,7 +553,9 @@ app.put("/actualizarContrato", (req, res) => {
 
 /////// RECAUDACION /////////////
 app.get("/recaudacion", (req, res) => {
-    const sql = `
+    const { inicio, fin, cajero } = req.query;
+
+    let sql = `
         SELECT 
             p.id_pagos AS folio,
             p.cajero,
@@ -550,21 +563,35 @@ app.get("/recaudacion", (req, res) => {
             CONCAT(con.nombre,' ',con.apellido_paterno,' ',con.apellido_materno) AS nombre,
             c.id_contrato AS contrato,
             CONCAT(MONTHNAME(p.mes_inicio),'-',MONTHNAME(p.mes_fin)) AS periodo,
-            p.meses,
-            p.tarifa,
-            p.recargos_meses AS recargos,
-            IFNULL(d.descuento_meses,0) AS descuentos
+            a.meses_morosos AS meses,
+            p.importe,
+            IFNULL(p.recargos_meses, 0) AS recargos,
+            IFNULL(ROUND(p.importe * d.valor / 100, 2), 0) AS descuentos
         FROM pagos p
         INNER JOIN contratos c ON p.id_contrato = c.id_contrato
         INNER JOIN contribuyentes con ON c.codigo_contribuyente = con.codigo_contribuyente
-        LEFT JOIN descuentos d ON p.id_descuento = d.id_descuento
+        LEFT JOIN adeudos a ON a.id_adeudo = (
+            SELECT id_adeudo FROM adeudos
+            WHERE id_contrato = p.id_contrato
+            AND timbrado = 1
+            ORDER BY id_adeudo DESC LIMIT 1
+        )
+        LEFT JOIN descuentos d ON a.id_descuento = d.id_descuento
+        WHERE 1=1
     `;
-    conexion.query(sql, (err, resultados) => {
+
+    const params = [];
+    if (inicio) { sql += ` AND DATE(p.fecha_pago) >= ?`; params.push(inicio); }
+    if (fin)    { sql += ` AND DATE(p.fecha_pago) <= ?`; params.push(fin); }
+    if (cajero) { sql += ` AND p.cajero = ?`;            params.push(cajero); }
+
+    sql += ` ORDER BY p.id_pagos DESC`;
+
+    conexion.query(sql, params, (err, resultados) => {
         if (err) { console.log(err); return res.status(500).json({ error: "Error en consulta" }); }
         res.json(resultados);
     });
 });
-
 ///// REPORTE DE ADEUDOS (con todos los campos necesarios para tabla y gráfica)
 app.get("/reporte-adeudos", (req, res) => {
     const sql = `
@@ -590,20 +617,35 @@ app.get("/reporte-adeudos", (req, res) => {
 });
 
 ////// REPORTE DE CORTE
-app.get("/corte-pagos", (req, res) => {
-    const sql = `
+app.get("/reporte-corte", (req, res) => {
+    const { inicio, fin, cajero } = req.query;
+
+    let sql = `
         SELECT
-            p.servicio AS codigo,
-            p.servicio AS descripcion,
+            p.servicio,
             COUNT(*) AS pagos,
-            SUM(IFNULL(p.recargos_meses,0)) AS recargos,
-            SUM(IFNULL(d.descuento_meses,0)) AS descuentos,
-            SUM((p.tarifa * p.meses)+(IFNULL(p.recargos_meses,0) * p.meses)) AS importe
+            SUM(IFNULL(p.recargos_meses, 0)) AS recargos,
+            IFNULL(SUM(ROUND(p.importe * d.valor / 100, 2)), 0) AS descuentos,
+            SUM(IFNULL(p.importe, 0)) AS importe
         FROM pagos p
-        LEFT JOIN descuentos d ON p.id_descuento = d.id_descuento
-        GROUP BY p.servicio
+        LEFT JOIN adeudos a ON a.id_adeudo = (
+            SELECT id_adeudo FROM adeudos
+            WHERE id_contrato = p.id_contrato
+            AND timbrado = 1
+            ORDER BY id_adeudo DESC LIMIT 1
+        )
+        LEFT JOIN descuentos d ON a.id_descuento = d.id_descuento
+        WHERE 1=1
     `;
-    conexion.query(sql, (err, resultados) => {
+
+    const params = [];
+    if (inicio) { sql += ` AND DATE(p.fecha_pago) >= ?`; params.push(inicio); }
+    if (fin)    { sql += ` AND DATE(p.fecha_pago) <= ?`; params.push(fin); }
+    if (cajero && cajero !== "Seleccione") { sql += ` AND p.cajero = ?`; params.push(cajero); }
+
+    sql += ` GROUP BY p.servicio ORDER BY p.servicio`;
+
+    conexion.query(sql, params, (err, resultados) => {
         if (err) { console.log(err); return res.status(500).json({ error: "Error al consultar pagos" }); }
         res.json(resultados);
     });
@@ -617,7 +659,7 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
     const { recargos, importes, cajero, fecha_pago } = req.body;
 
     try {
-        // 1. Obtener datos del adeudo
+        // 1. Obtener datos del adeudo ANTES de modificarlo
         const [adeudoRows] = await conexion.promise().query(
             `SELECT a.*, c.id_contrato, c.codigo_contribuyente
              FROM adeudos a
@@ -627,13 +669,18 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
         if (adeudoRows.length === 0) return res.status(404).json({ mensaje: "Adeudo no encontrado" });
         const a = adeudoRows[0];
 
+        // Guardamos meses_morosos antes de que se modifique
+        const mesesMorosos = a.meses_morosos || 1;
+        const idDescuento  = a.id_descuento || null;
+
         // 2. Marcar adeudo como timbrado
+       
         await conexion.promise().query(
-            `UPDATE adeudos SET timbrado = 1, estado = 1, meses_morosos = 0 WHERE id_adeudo = ?`,
+            `UPDATE adeudos SET timbrado = 1, estado = 1 WHERE id_adeudo = ?`,
             [id_adeudo]
         );
 
-        // 3. Verificar si ya existe un registro en pagos para este contrato (UNIQUE en id_contrato)
+        // 3. Verificar si ya existe un registro en pagos para este contrato
         const [existePago] = await conexion.promise().query(
             `SELECT id_pagos FROM pagos WHERE id_contrato = ?`, [a.id_contrato]
         );
@@ -642,7 +689,7 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
         const mesFin    = fecha_pago || new Date().toISOString().split('T')[0];
 
         if (existePago.length > 0) {
-            // Actualizar registro existente
+            
             await conexion.promise().query(
                 `UPDATE pagos SET
                    servicio = ?, mes_inicio = ?, mes_fin = ?, meses = ?,
@@ -650,13 +697,13 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
                    total_recaudado = ?, total_recargos = ?, timbrado = 1,
                    estatus = 1, fecha_pago = ?, id_descuento = ?
                  WHERE id_contrato = ?`,
-                [a.servicio, mesInicio, mesFin, a.meses_morosos || 1,
+                [a.servicio, mesInicio, mesFin, mesesMorosos,
                  cajero || 'Cajero', recargos, recargos, importes,
-                 importes, recargos, fecha_pago, a.id_descuento || null,
+                 importes, recargos, fecha_pago, idDescuento,
                  a.id_contrato]
             );
         } else {
-            // Insertar nuevo registro en pagos
+            
             await conexion.promise().query(
                 `INSERT INTO pagos
                    (id_contrato, serie, id_unidad, servicio, mes_inicio, mes_fin, meses,
@@ -665,8 +712,8 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
                     total_recaudado, total_recargos, tarifa, fecha_pago)
                  VALUES (?,?,?,?,?,?,?,?,?,?,?,1,1,?,?,1,?,?,?,?,?)`,
                 [a.id_contrato, 'S/N', 1, a.servicio, mesInicio, mesFin,
-                 a.meses_morosos || 1, cajero || 'Cajero', recargos, recargos,
-                 importes, a.id_descuento || null,
+                 mesesMorosos, cajero || 'Cajero', recargos, recargos,
+                 importes, idDescuento,
                  `Pago ${a.servicio}`, importes - recargos,
                  importes, recargos, importes - recargos, fecha_pago]
             );
@@ -685,7 +732,6 @@ app.put("/pagos/procesar-timbrado/:id", async (req, res) => {
         res.status(500).json({ error: "Error interno al procesar el timbrado.", detalle: error.message });
     }
 });
-
 // HISTORIAL DE PAGOS (desde tabla pagos)
 app.get("/historial-pagos", (req, res) => {
     const sql = `
@@ -771,4 +817,110 @@ app.post("/recargos", async (req, res) => {
         res.status(500).json({ mensaje: "Error al registrar recargo" });
     }
 });
+// ============================================================
+// CORTE DE PAGOS
+// ============================================================
 
+app.get("/reporte-corte", (req, res) => {
+
+  const { inicio, fin, cajero } = req.query;
+
+  let sql = `
+    SELECT
+      servicio,
+      COUNT(*) AS pagos,
+      SUM(IFNULL(recargos,0)) AS recargos,
+      SUM(
+        IFNULL(importe,0)
+        - IFNULL(total_recaudado, importe)
+      ) AS descuentos,
+      SUM(IFNULL(total_recaudado,0)) AS importe
+    FROM pagos
+    WHERE 1=1
+  `;
+
+  const params = [];
+
+  if(inicio){
+    sql += ` AND fecha_pago >= ?`;
+    params.push(inicio);
+  }
+
+  if(fin){
+    sql += ` AND fecha_pago <= ?`;
+    params.push(fin);
+  }
+
+  if(cajero && cajero !== "Seleccione"){
+    sql += ` AND cajero = ?`;
+    params.push(cajero);
+  }
+
+  sql += `
+    GROUP BY servicio
+    ORDER BY servicio
+  `;
+
+  conexion.query(sql, params, (err, result) => {
+
+    if(err){
+      console.log(err);
+      return res.status(500).json({
+        mensaje:"Error"
+      });
+    }
+
+    res.json(result);
+
+  });
+
+});
+
+//ADEUDOS POR CALLE
+app.get("/calles-adeudos", (req, res) => {
+
+    const buscar = req.query.buscar || "";
+
+    let sql = `
+        SELECT
+            ct.calle,
+            COUNT(*) AS numero_contratos,
+            SUM(a.importes) AS importes
+        FROM adeudos a
+        INNER JOIN contratos c
+            ON a.id_contrato = c.id_contrato
+        INNER JOIN contribuyentes ct
+            ON c.codigo_contribuyente = ct.codigo_contribuyente
+        WHERE a.estado = 1
+    `;
+
+    const valores = [];
+
+    if (buscar) {
+        sql += ` AND ct.calle LIKE ? `;
+        valores.push(`%${buscar}%`);
+    }
+
+    sql += `
+        GROUP BY ct.calle
+        ORDER BY importes DESC
+    `;
+
+    conexion.query(sql, valores, (err, result) => {
+
+        if(err){
+            console.log(err);
+            return res.status(500).json({
+                total:0,
+                datos:[]
+            });
+        }
+
+        res.json({
+            total: result.length,
+            datos: result
+        });
+
+    });
+
+});

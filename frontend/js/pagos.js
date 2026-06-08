@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("filtroContribuyente").addEventListener("change", buscarPagos);
     document.getElementById("filtroServicio").addEventListener("change", buscarPagos);
     document.getElementById("chkVigentes").addEventListener("change", buscarPagos);
-    document.getElementById("chkNoTimbrados").addEventListener("change", buscarPagos);
+   
 });
 
 // ============================================
@@ -95,7 +95,7 @@ async function cargarPagos() {
                 <td>${pago.servicio || "—"}</td>
                 <td style="text-transform:capitalize;">${mesInicio}</td>
                 <td style="text-transform:capitalize;">${mesFin}</td>
-                <td style="text-align:center;">${pago.meses ?? 0}</td>
+                <td style="text-align:center;">${pago.meses_morosos ?? pago.meses ?? 0}</td>
                 <td>${fechaPago}</td>
                 <td>${cajero}</td>
                 <td>$${recargos}</td>
@@ -188,9 +188,9 @@ async function buscarPagos() {
     const contribuyente  = document.getElementById("filtroContribuyente").value;
     const servicio       = document.getElementById("filtroServicio").value;
     const vigente        = document.getElementById("chkVigentes").checked ? 1 : 0;
-    const noTimbrado     = document.getElementById("chkNoTimbrados").checked ? 1 : 0;
+    
 
-    const params = new URLSearchParams({ fechaInicio, fechaFin, contrato, contribuyente, servicio, vigente, noTimbrado });
+    const params = new URLSearchParams({ fechaInicio, fechaFin, contrato, contribuyente, servicio, vigente });
     try {
         const res = await fetch(`http://localhost:3000/pagos/busqueda?${params}`);
         const data = await res.json();
@@ -224,7 +224,7 @@ function renderizarTabla(data) {
                 <td>${pago.descuento || "Sin descuento"}</td>
                 <td>$${parseFloat(pago.importe || pago.total_recaudado || 0).toFixed(2)}</td>
                 <td><span class="${esVigente ? 'badge-vigente' : 'badge-novigente'}">${esVigente ? 'Vigente' : 'Baja'}</span></td>
-                <td><span class="${esTimbrado ? 'badge-timbrado-si' : 'badge-timbrado-no'}">${esTimbrado ? 'Timbrado' : 'No timbrado'}</span></td>
+                
             </tr>
         `;
     });
@@ -268,8 +268,6 @@ document.getElementById("btnLimpiar").addEventListener("click", () => {
     document.getElementById("filtroContribuyente").value = "";
     document.getElementById("filtroServicio").value = "";
     document.getElementById("chkVigentes").checked = false;
-    document.getElementById("chkNoTimbrados").checked = false;
-    cargarPagos();
 });
 
 // ============================================
@@ -313,5 +311,5 @@ document.getElementById("btnVer").addEventListener("click", () => {
 // ============================================
 document.getElementById("btnMenu").addEventListener("click", () => { window.location.href = "../html/menu.html"; });
 document.getElementById("btnContratos").addEventListener("click", () => { window.location.href = "../html/contratos.html"; });
-document.getElementById("btnReportes").addEventListener("click", () => { window.location.href = "../html/reportes.html"; });
+document.getElementById("btnReportes").addEventListener("click", () => { window.location.href = "../html/recaudacionAcomulada.html"; });
 document.getElementById("btnRecibos").addEventListener("click", () => { window.location.href = "../html/recibos.html"; });

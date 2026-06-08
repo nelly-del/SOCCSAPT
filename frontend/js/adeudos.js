@@ -37,7 +37,7 @@ function cargarTabla(lista) {
     tbody.innerHTML += `
       <tr>
         <td>${item.contrato}</td>
-        <td>${item.contrato_anterior || ""}</td>
+       
         <td>${item.nombre}</td>
         <td>${item.domProp || ""}</td>
         <td>${item.domCont || ""}</td>
